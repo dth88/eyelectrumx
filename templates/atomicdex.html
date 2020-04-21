@@ -71,37 +71,39 @@
             <tbody>
             {% for coin, urls in electrum_urls.items() %}
                 {% for url in urls %}
-                <tr>
-                    <td>{{coin}}</td>
-                    <td>{{url['url']}}</td>
-                    {% if url['current_status']['alive'] %}
-                        <td style="background:green">Alive!</td>
-                        <td>{{ url['current_status']['uptime'] }}</td>
-                    {% else %}
-                        <td style="background:red">Dead!</td>
-                        <td>{{ url['current_status']['downtime'] }}</td>
-                    {% endif %}
+                    {% if url['atomic_dex_mobile'] %}
+                        <tr>
+                            <td>{{coin}}</td>
+                            <td>{{url['url']}}</td>
+                            {% if url['current_status']['alive'] %}
+                                <td style="background:green">Alive!</td>
+                                <td>{{ url['current_status']['uptime'] }}</td>
+                            {% else %}
+                                <td style="background:red">Dead!</td>
+                                <td>{{ url['current_status']['downtime'] }}</td>
+                            {% endif %}
 
-                    {% if url['current_status']['version'] %}
-                    <td class="alignright">{{ url['current_status']['version'] }}</td>
-                    {% else %}
-                    <td class="alignright">Unknown</td>
-                    {% endif %}
+                            {% if url['current_status']['version'] %}
+                            <td class="alignright">{{ url['current_status']['version'] }}</td>
+                            {% else %}
+                            <td class="alignright">Unknown</td>
+                            {% endif %}
 
-                    {% for contact in url['contact'] %}
-                        <td class="alignright">
-                        {% if 'discord' in contact %}
-                            Discord: {{ contact['discord'] }}
-                        {% elif 'email' in contact %}
-                            Email: <a href="mailto:{{ contact['email'] }}">{{ contact['email'] }}</a>
-                        {% elif 'github' in contact %}
-                            Github: <a href={{ contact['github'] }}> {{ contact['github'] }} </a>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
+                            {% for contact in url['contact'] %}
+                                <td class="alignright">
+                                    {% if 'discord' in contact %}
+                                        Discord: {{ contact['discord'] }}
+                                    {% elif 'email' in contact %}
+                                        Email: <a href="mailto:{{ contact['email'] }}">{{ contact['email'] }}</a>
+                                    {% elif 'github' in contact %}
+                                        Github: <a href={{ contact['github'] }}> {{ contact['github'] }} </a>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
-                </tr>
             </tbody>
         </table>
     </div>

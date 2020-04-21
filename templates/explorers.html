@@ -63,13 +63,10 @@
                     <th>URL</th>
                     <th>Status</th>
                     <th>Since</th>
-                    <th>ElectrumX version</th>
-                    <th>Contact</th>
-                    
                 </tr>
             </thead>
             <tbody>
-            {% for coin, urls in electrum_urls.items() %}
+            {% for coin, urls in explorers_urls.items() %}
                 {% for url in urls %}
                 <tr>
                     <td>{{coin}}</td>
@@ -81,24 +78,6 @@
                         <td style="background:red">Dead!</td>
                         <td>{{ url['current_status']['downtime'] }}</td>
                     {% endif %}
-
-                    {% if url['current_status']['version'] %}
-                    <td class="alignright">{{ url['current_status']['version'] }}</td>
-                    {% else %}
-                    <td class="alignright">Unknown</td>
-                    {% endif %}
-
-                    {% for contact in url['contact'] %}
-                        <td class="alignright">
-                        {% if 'discord' in contact %}
-                            Discord: {{ contact['discord'] }}
-                        {% elif 'email' in contact %}
-                            Email: <a href="mailto:{{ contact['email'] }}">{{ contact['email'] }}</a>
-                        {% elif 'github' in contact %}
-                            Github: <a href={{ contact['github'] }}> {{ contact['github'] }} </a>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
                 {% endfor %}
             {% endfor %}
                 </tr>
