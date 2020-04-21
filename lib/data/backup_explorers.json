@@ -1,0 +1,358 @@
+{
+    "KMD": [
+        {
+            "url": "https://kmdexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        },
+        {
+            "url": "http://kmd.explorer.dexstats.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        },
+        {
+            "url": "https://explorer.komodo.services/",
+            "current_status": {
+                "alive": false,
+                "uptime": 0,
+                "downtime": "Apr-21 16:15"
+            }
+        }
+    ],
+    "BTC": [
+        {
+            "url": "https://insight.bitpay.com/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "AWC": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "AXE": [
+        {
+            "url": "https://insight.axerunners.com/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "BAT": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "BUSD": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "BCH": [
+        {
+            "url": "https://explorer.bitcoin.com/bch/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "ZILLA": [
+        {
+            "url": "https://zillaexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "DAI": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "DASH": [
+        {
+            "url": "https://explorer.dash.org/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "DEX": [
+        {
+            "url": "https://dex.kmdexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "DGB": [
+        {
+            "url": "https://digiexplorer.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:15",
+                "downtime": 0
+            }
+        }
+    ],
+    "DOGE": [
+        {
+            "url": "https://dogechain.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "ECA": [
+        {
+            "url": "https://explorer.electraproject.org/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "ETH": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "FTC": [
+        {
+            "url": "https://explorer.feathercoin.com/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "HUSH": [
+        {
+            "url": "https://explorer.myhush.org/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "LABS": [
+        {
+            "url": "https://labs.explorer.dexstats.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "LTC": [
+        {
+            "url": "https://blockexplorer.one/litecoin/mainnet/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "MORTY": [
+        {
+            "url": "https://morty.kmd.dev/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "NAV": [
+        {
+            "url": "https://www.navexplorer.com/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "PAX": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "QTUM": [
+        {
+            "url": "https://qtum.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "RVN": [
+        {
+            "url": "https://ravencoin.network/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "RFOX": [
+        {
+            "url": "https://rfox.explorer.dexstats.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "RICK": [
+        {
+            "url": "https://rick.kmd.dev/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "SAI": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "SUPERNET": [
+        {
+            "url": "https://supernet.kmdexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "TUSD": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "USDC": [
+        {
+            "url": "https://etherscan.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "OOT": [
+        {
+            "url": "https://explorer.utrum.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "VRSC": [
+        {
+            "url": "https://vrsc.kmdexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "VOTE": [
+        {
+            "url": "https://vote.kmdexplorer.io/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ],
+    "ZEC": [
+        {
+            "url": "https://zcashnetwork.info/",
+            "current_status": {
+                "alive": true,
+                "uptime": "Apr-21 16:16",
+                "downtime": 0
+            }
+        }
+    ]
+}
