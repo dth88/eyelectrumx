@@ -68,3 +68,5 @@ electrum_links = {
     "ZILLA" : "https://raw.githubusercontent.com/jl777/coins/master/electrums/ZILLA",
     "ETH" : "https://raw.githubusercontent.com/jl777/coins/master/ethereum/ETH"
 }
+
+atomic_dex_mobile = ["KMD", "BTC", "AWC", "AXE", "BUSD", "BAT", "BCH", "ZILLA", "DAI", "DASH", "DEX", "DGB", "DOGE", "ECA", "ETH", "FTC", "HUSH", "LABS", "LTC", "MORTY", "NAV", "PAX", "QTUM", "RVN", "RFOX", "RICK", "SAI", "SUPERNET", "TUSD", "USDC", "OOT", "VRSC", "VOTE", "ZEC"]
