@@ -104,11 +104,13 @@ def pretty_print(electrum_urls):
 def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     for coin, urls in electrum_urls.items():
         for url in urls:
+            #if url['url'].split(':') has exactly 2 members then
+            #we do simple tcp call with socket
             try:
                 electrum, port = url['url'].split(':')
+                #if electrum is reachable
                 try:
                     r = tcp_call_electrumx(electrum, int(port), electrum_call)
-                    #if electrum is reachable
                     try:
                         #update if status exists
                         if url['current_status']:
@@ -121,7 +123,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             url['current_status']['downtime'] = 0
                             url['current_status']['uptime'] = time() if not url['current_status']['uptime'] else url['current_status']['uptime']
                     except KeyError:
-                        #creation for the first time
+                        #create if there's no status dict
                         url['current_status'] = {}
                         url['current_status']['alive'] = True
                         if 'QTUM' in coin:
@@ -130,8 +132,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             url['current_status']['version'] = r.split()[4][:-2]
                         url['current_status']['uptime'] = time()
                         url['current_status']['downtime'] = 0
+                #if electrum is unreachable
                 except socket.error:
-                    #if electrum is unreachable
                     try:
                         #update if status exists
                         if url['current_status']:
@@ -139,7 +141,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             url['current_status']['uptime'] = 0
                             url['current_status']['downtime'] = time() if not url['current_status']['downtime'] else url['current_status']['downtime']
                     except KeyError:
-                        #first time creation for unreachable electrum
+                        #create if there's no status dict
                         url['current_status'] = {}
                         url['current_status']['alive'] = False
                         url['current_status']['uptime'] = 0
@@ -182,13 +184,13 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
 
 
 def backup(electrum_urls):
-    with open('data/backup.json', 'w') as f:
+    with open('lib/data/backup.json', 'w') as f:
         json.dump(electrum_urls, f)
 
 
 def restore_from_backup():
     backup = {}
-    with open('data/backup.json', 'r') as f:
+    with open('lib/data/backup.json', 'r') as f:
         backup = json.load(f)
     return backup
 
