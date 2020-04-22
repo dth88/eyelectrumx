@@ -1,117 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">Coin</th>
+                <th style="text-align: center;">URL</th>
+                <th>Status</th>
+                <th style="text-align: center;">Since</th>
+                <th>ElectrumX version</th>
+                <th style="text-align: center; max-width: 100px;">Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coin, urls in electrum_urls.items() %}
+            {% for url in urls %}
+            <tr>
+                <td class="aligncenter">{{coin}}</td>
+                <td class="aligncenter">{{url['url']}}</td>
+                {% if url['current_status']['alive'] %}
+                    <td style="background:green">Alive!</td>
+                    <td>{{ url['current_status']['uptime'] }}</td>
+                {% else %}
+                    <td style="background:red">Dead!</td>
+                    <td>{{ url['current_status']['downtime'] }}</td>
+                {% endif %}
 
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>ELECTRUMS MONITORING</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
-
-    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon/favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='/favicon/favicon-16x16.png') }}">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="theme-color" content="#5A7CAC">
-
-    <meta name="description" content="Statistics for the electrumX servers">
-    <meta name="keywords" content="electrumx, electrum, monitoring, atomicdex, kmd, komodo">
-
-</head>
-<body>
-    <nav id="topnav">
-        <div class="topnav-left">
-            <a id="toplogo" href="/"><img src={{ url_for('static', filename='/favicon/favicon-32x32.png') }} alt="Komodo Stats"></a>
-            <ul class="topnavmenu topnav-mobile-expand">
-                <li class="topnav-haschildren">
-                    <input type="checkbox" id="drop-1">
-                    <label for="drop-1">Electrums</label>
-                </li>
-                <li class="topnav-haschildren">
-                    <input type="checkbox" id="drop-2">
-                    <label for="drop-2" class="toggle">Filter</label>
-                    <a href="/" class="currentnav">Filter</a>
-                    <ul class="topnav-submenu topnav-mobile-expand">
-                        <li><a href="/atomicdex-mobile">AtomicDex-Mobile</a></li>
-                        <li><a href="/">AtomicDex-Desktop</a></li>
-                        <li><a href="/">Dead Electrums</a></li>
-                    </ul>
-                </li>
-                <li><a href="/explorers">Explorers</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div id="headers">
-        <h1>Komodo Platform ElectrumX server monitoring</h1>
-        <h2 title="2020-04-15">started</h2>
-    </div>
-    <div id="content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Coin</th>
-                    <th>URL</th>
-                    <th>Status</th>
-                    <th>Since</th>
-                    <th>ElectrumX version</th>
-                    <th>Contact</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-            {% for coin, urls in electrum_urls.items() %}
-                {% for url in urls %}
-                <tr>
-                    <td>{{coin}}</td>
-                    <td>{{url['url']}}</td>
-                    {% if url['current_status']['alive'] %}
-                        <td style="background:green">Alive!</td>
-                        <td>{{ url['current_status']['uptime'] }}</td>
-                    {% else %}
-                        <td style="background:red">Dead!</td>
-                        <td>{{ url['current_status']['downtime'] }}</td>
-                    {% endif %}
-
-                    {% if url['current_status']['version'] %}
-                    <td class="alignright">{{ url['current_status']['version'] }}</td>
-                    {% else %}
-                    <td class="alignright">Unknown</td>
-                    {% endif %}
-
-                    {% for contact in url['contact'] %}
-                        <td class="alignright">
-                        {% if 'discord' in contact %}
-                            Discord: {{ contact['discord'] }}
-                        {% elif 'email' in contact %}
-                            Email: <a href="mailto:{{ contact['email'] }}">{{ contact['email'] }}</a>
-                        {% elif 'github' in contact %}
-                            Github: <a href={{ contact['github'] }}> {{ contact['github'] }} </a>
-                        {% endif %}
-                        </td>
+                {% if url['current_status']['version'] %}
+                <td class="aligncenter">{{ url['current_status']['version'] }}</td>
+                {% else %}
+                <td class="aligncenter">Unknown</td>
+                {% endif %}
+                {% if url['contact'] %}
+                    {% for k,v in url['contact'].items() %}
+                        <td> | {% if 'discord' in k %}Discord: {{ v }} | {% elif 'email' in k %} Email: {{ v }} | {% elif 'github' in k %} <a href={{ v }}>Github</a> | {% endif %}</td>
                     {% endfor %}
-                {% endfor %}
+                {% else %}
+                    <td>| No contact info |</td>
+                {% endif %}
             {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="bottommenu">
-        <button class="dropupbutton">Choose Coin ▲</button>
-        <div class="dropupmenu">
-            <a href="/smartchain/KMD">KMD</a>
-            <a href="/smartchain/AXO">AXO</a>
-        </div>
-    </div>
-<script src="{{ url_for('static', filename='/js/script.js') }}" language="javascript" type="text/javascript"></script>
-</body>
-</html>
+        {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

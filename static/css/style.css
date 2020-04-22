@@ -235,7 +235,7 @@ a, a:visited {
 
 li.topnav-haschildren > a:after,
 li.topnav-left  {
-    content:  var(--downarrow);
+    content:none;
     transition: 0.15s;
     position:absolute;
     right:20px;
@@ -427,14 +427,14 @@ table caption .nodeinfo {
 }
 
 thead th {
-    text-align:left;
+    text-align:center;
     background-color:var(--highlightdark);
     border:2px outset var(--highlight);
 }
 
 th {
-    text-align:left;
-    padding:2px;
+    text-align:center;
+    padding:12px;
     font-size:1.1rem;
 }
 
@@ -519,6 +519,7 @@ table.biggrid tbody {
 
 table.biggrid thead tr {
     display:block;
+    width:fit-content;
 }
 
 table.biggrid tbody td {
