@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ELECTRUMS</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='/favicon/favicon-16x16.png') }}">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#5A7CAC">
+
+    <meta name="description" content="Statistics for the electrumX servers">
+    <meta name="keywords" content="electrumx, electrum, monitoring, atomicdex, kmd, komodo">
+
+</head>
+<body>
+    <nav id="topnav">
+        <div class="topnav-left">
+            <a id="toplogo" href="/"><img src={{ url_for('static', filename='/favicon/favicon-32x32.png') }} alt="Komodo Stats"></a>
+            <ul class="topnavmenu topnav-mobile-expand">
+                <li class="topnav-haschildren">
+                    <input type="checkbox" id="drop-1">
+                    <label for="drop-1" class="toggle">All Electrums &nabla;</label>
+                    <a href="/" class="currentnav">All Electrums &nabla;</a>
+                    <ul class="topnav-submenu topnav-mobile-expand">
+                        <li><a href="/atomicdex-mobile">AtomicDex-Mobile</a></li>
+                        <li><a href="/">AtomicDex-Desktop</a></li>
+                    </ul>
+                </li>
+                <li><a href="/explorers">Explorers</a></li>
+                <li><a href="/api">API Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="headers">
+        <h1>ElectrumX-monitoring API</h1>
+        <h2 title="2020-04-15">started</h2>
+    </div>
+    <div style="margin-left: 350px;">
+        <div style="float:left; margin-right: 120px;">
+            <h2>/api/electrums</h2>
+            <p style="margin-left: 100px;">Get all available electrums status.</p>
+
+            <h2>/api/atomicdex-mob</h2>
+            <p style="margin-left: 100px;">Get only atomicdex-mobile electrums.</p> 
+            <p style="margin-left: 100px;">Here's json schema for your reference:</p>
+
+            <pre>
+                {
+                    "AXE": [
+                        {
+                            "url": "electrum1.cipig.net:10057",
+                            "contact": {
+                                "email": "cipi(at)komodoplatform.com",
+                                "discord": "cipi#4502"
+                            },
+                            "atomic_dex_mobile": true,
+                            "current_status": {
+                                "alive": true,
+                                "version": "1.14.0",
+                                "uptime": "Apr-23 03:40",
+                                "downtime": 0
+                            }
+                        }
+                    ],
+                    "KMD": [{},{},...],
+                    ...
+                    ...
+                }
+            </pre>
+        </div>
+
+        <div style="margin-right: 250px;">
+            <h2 style="padding-top: 23px;">/api/explorers</h2>
+            <p>Get explorers statistics. Here's json schema for your reference:</p>
+
+            <pre>
+                {
+                    "KMD": [
+                        {
+                            "url": "https://kmdexplorer.io/",
+                            "current_status": {
+                                "alive": true,
+                                "uptime": "Apr-23 03:41",
+                                "downtime": 0
+                            }
+                        }
+                    ]
+                }
+            </pre>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='/js/script.js') }}" language="javascript" type="text/javascript"></script>
+</body>
+</html>

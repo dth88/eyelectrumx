@@ -3,42 +3,42 @@
         {
             "url": "electrum1.cipig.net:10057",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10057",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10057",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -47,23 +47,23 @@
         {
             "url": "electrum1.getaywa.org:50001",
             "contact": {
-                "email": "nicon.xenakis@gmail.com"
+                "email": "nicon.xenakis(at)gmail.com"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:40"
             }
         },
         {
             "url": "electrum2.getaywa.org:50001",
             "contact": {
-                "email": "nicon.xenakis@gmail.com"
+                "email": "nicon.xenakis(at)gmail.com"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:40"
             }
         }
     ],
@@ -75,7 +75,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.10.1",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
@@ -86,7 +86,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.10.1",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -95,39 +95,39 @@
         {
             "url": "electrum1.cipig.net:10012",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10012",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10012",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -136,39 +136,39 @@
         {
             "url": "electrum1.cipig.net:10007",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10007",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10007",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -177,42 +177,42 @@
         {
             "url": "electrum1.cipig.net:10000",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10000",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10000",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -221,39 +221,39 @@
         {
             "url": "electrum1.cipig.net:10020",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10020",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10020",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -267,7 +267,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
@@ -279,7 +279,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:40"
             }
         }
     ],
@@ -287,39 +287,39 @@
         {
             "url": "electrum1.cipig.net:10029",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10029",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10029",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -328,39 +328,39 @@
         {
             "url": "electrum1.cipig.net:10053",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10053",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10053",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -369,39 +369,39 @@
         {
             "url": "electrum1.cipig.net:10011",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10011",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10011",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -410,39 +410,39 @@
         {
             "url": "electrum1.cipig.net:10008",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10008",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10008",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:40",
                 "downtime": 0
             }
         }
@@ -451,26 +451,26 @@
         {
             "url": "electrumx1.denarius.pro:50001",
             "contact": {
-                "email": "admin@denarius.io",
+                "email": "admin(at)denarius.io",
                 "discord": "Carsen#3333"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrumx2.denarius.pro:50001",
             "contact": {
-                "email": "admin@denarius.io",
+                "email": "admin(at)denarius.io",
                 "discord": "Carsen#3333"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -479,42 +479,42 @@
         {
             "url": "electrum1.cipig.net:10061",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10061",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10061",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -523,42 +523,42 @@
         {
             "url": "electrum1.cipig.net:10006",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10006",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10006",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -567,42 +567,42 @@
         {
             "url": "electrum1.cipig.net:10059",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10059",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10059",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -611,42 +611,42 @@
         {
             "url": "electrum1.cipig.net:10060",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10060",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10060",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -655,42 +655,42 @@
         {
             "url": "electrum1.cipig.net:10052",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10052",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10052",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -699,39 +699,39 @@
         {
             "url": "electrum3.cipig.net:10062",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10062",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum1.cipig.net:10062",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -743,7 +743,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -753,7 +753,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -762,42 +762,42 @@
         {
             "url": "electrum1.cipig.net:10054",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10054",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10054",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -806,39 +806,39 @@
         {
             "url": "electrum3.cipig.net:10072",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10072",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum1.cipig.net:10072",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -852,7 +852,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -863,7 +863,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -874,7 +874,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -884,7 +884,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -894,7 +894,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -904,7 +904,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -913,39 +913,39 @@
         {
             "url": "electrum1.cipig.net:10009",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10009",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10009",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -957,7 +957,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -967,7 +967,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -976,42 +976,42 @@
         {
             "url": "electrum1.cipig.net:10064",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10064",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10064",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1020,26 +1020,26 @@
         {
             "url": "electrum1.ilien.io:65011",
             "contact": {
-                "email": "support@chainmake.rs",
+                "email": "support(at)chainmake.rs",
                 "discord": "siu - Chainmakers#3920"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.ilien.io:65011",
             "contact": {
-                "email": "support@chainmake.rs",
+                "email": "support(at)chainmake.rs",
                 "discord": "siu - Chainmakers#3920"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1048,39 +1048,39 @@
         {
             "url": "electrum1.cipig.net:10004",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10004",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10004",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1092,7 +1092,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -1101,7 +1101,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -1109,42 +1109,42 @@
         {
             "url": "electrum1.cipig.net:10001",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10001",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10001",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1153,39 +1153,39 @@
         {
             "url": "electrum1.cipig.net:10024",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10024",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10024",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1194,39 +1194,39 @@
         {
             "url": "electrum1.cipig.net:10016",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10016",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10016",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1235,42 +1235,42 @@
         {
             "url": "electrum1.cipig.net:10019",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10019",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10019",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1283,7 +1283,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.10.1",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1294,7 +1294,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.10.1",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1305,7 +1305,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1316,7 +1316,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.10.1",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1325,12 +1325,12 @@
         {
             "url": "electrum1.lumberscout.io:10001",
             "contact": {
-                "email": "info@lumberscout.com"
+                "email": "info(at)lumberscout.com"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -1338,39 +1338,39 @@
         {
             "url": "electrum1.cipig.net:10023",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10023",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10023",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1379,39 +1379,39 @@
         {
             "url": "electrum1.cipig.net:10015",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10015",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10015",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1425,7 +1425,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -1436,7 +1436,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -1447,7 +1447,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1457,7 +1457,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1467,7 +1467,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1476,42 +1476,42 @@
         {
             "url": "electrum1.cipig.net:10018",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10018",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10018",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1520,39 +1520,39 @@
         {
             "url": "electrum1.cipig.net:10013",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10013",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10013",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1564,7 +1564,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -1572,8 +1572,7 @@
             "contact": {},
             "current_status": {
                 "alive": true,
-                "version": "1.12",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1582,42 +1581,42 @@
         {
             "url": "electrum1.cipig.net:10056",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10056",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10056",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1626,39 +1625,39 @@
         {
             "url": "electrum1.cipig.net:10036",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10036",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10036",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1667,42 +1666,42 @@
         {
             "url": "electrum1.cipig.net:10021",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10021",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10021",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1714,7 +1713,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -1723,7 +1722,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -1731,39 +1730,39 @@
         {
             "url": "electrum1.cipig.net:10010",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10010",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10010",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1772,23 +1771,23 @@
         {
             "url": "electrum1.pungo.cloud:10002",
             "contact": {
-                "email": "contact@pungo.cloud"
+                "email": "contact(at)pungo.cloud"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
             "url": "electrum2.pungo.cloud:10002",
             "contact": {
-                "email": "contact@pungo.cloud"
+                "email": "contact(at)pungo.cloud"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1797,24 +1796,24 @@
         {
             "url": "electrum1.patenttx.com:18081",
             "contact": {
-                "email": "webmaster@patenttx.com"
+                "email": "webmaster(at)patenttx.com"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.8.7",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.patenttx.com:18081",
             "contact": {
-                "email": "webmaster@patenttx.com"
+                "email": "webmaster(at)patenttx.com"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.8.7",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1829,7 +1828,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1842,7 +1841,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.13",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -1855,7 +1854,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:19"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -1867,7 +1866,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.13",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1876,39 +1875,39 @@
         {
             "url": "electrum1.cipig.net:10003",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10003",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10003",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1917,42 +1916,42 @@
         {
             "url": "electrum1.cipig.net:10034",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10034",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10034",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -1961,42 +1960,42 @@
         {
             "url": "electrum1.cipig.net:10017",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10017",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10017",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2005,42 +2004,42 @@
         {
             "url": "electrum1.cipig.net:10051",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10051",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:19",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10051",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2054,7 +2053,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2066,7 +2065,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2078,7 +2077,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2090,7 +2089,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:20"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
@@ -2101,7 +2100,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2113,7 +2112,7 @@
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:20"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -2121,42 +2120,42 @@
         {
             "url": "electrum1.cipig.net:10005",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10005",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10005",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2170,7 +2169,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2182,7 +2181,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2194,7 +2193,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.5.1",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2204,7 +2203,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.5.1",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2214,7 +2213,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.5.1",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2224,7 +2223,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.5.1",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2234,7 +2233,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.5.1",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2243,56 +2242,56 @@
         {
             "url": "el0.veruscoin.io:17485",
             "contact": {
-                "email": "0x03-ctrlc@protonmail.com",
+                "email": "0x03-ctrlc(at)protonmail.com",
                 "discord": "0x03#8822"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "el1.veruscoin.io:17485",
             "contact": {
-                "email": "0x03-ctrlc@protonmail.com",
+                "email": "0x03-ctrlc(at)protonmail.com",
                 "discord": "0x03#8822"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "el2.veruscoin.io:17485",
             "contact": {
-                "email": "0x03-ctrlc@protonmail.com",
+                "email": "0x03-ctrlc(at)protonmail.com",
                 "discord": "0x03#8822"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum.vrsc.0x03.services:17485",
             "contact": {
-                "email": "0x03-ctrlc@protonmail.com",
+                "email": "0x03-ctrlc(at)protonmail.com",
                 "discord": "0x03#8822"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2307,7 +2306,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.7",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2320,7 +2319,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.8.12",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2329,39 +2328,39 @@
         {
             "url": "electrum1.cipig.net:10014",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10014",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10014",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2370,23 +2369,23 @@
         {
             "url": "electrumx1.bitcoinplus.org:50001",
             "contact": {
-                "email": "contactus@bitcoinplus.org"
+                "email": "contactus(at)bitcoinplus.org"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:20"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
             "url": "electrumx2.bitcoinplus.org:50001",
             "contact": {
-                "email": "contactus@bitcoinplus.org"
+                "email": "contactus(at)bitcoinplus.org"
             },
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:20"
+                "downtime": "Apr-23 03:41"
             }
         }
     ],
@@ -2400,7 +2399,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2413,7 +2412,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2426,7 +2425,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
@@ -2439,7 +2438,7 @@
             "current_status": {
                 "alive": true,
                 "version": "1.13.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2448,42 +2447,42 @@
         {
             "url": "electrum1.cipig.net:10058",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10058",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10058",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2492,42 +2491,42 @@
         {
             "url": "electrum1.cipig.net:10028",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum2.cipig.net:10028",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         },
         {
             "url": "electrum3.cipig.net:10028",
             "contact": {
-                "email": "cipi@komodoplatform.com",
+                "email": "cipi(at)komodoplatform.com",
                 "discord": "cipi#4502"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
                 "version": "1.14.0",
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0
             }
         }
@@ -2536,52 +2535,52 @@
         {
             "url": "http://195.201.0.6:8555",
             "contact": {
-                "email": "ortgma@gmail.com"
+                "email": "ortgma(at)gmail.com"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": false,
                 "uptime": 0,
-                "downtime": "Apr-23 02:20"
+                "downtime": "Apr-23 03:41"
             }
         },
         {
             "url": "http://eth1.cipig.net:8555",
             "contact": {
-                "email": "cipi@komodoplatform.com"
+                "email": "cipi(at)komodoplatform.com"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0,
-                "date": "Apr-23 02:20"
+                "date": "Apr-23 03:41"
             }
         },
         {
             "url": "http://eth2.cipig.net:8555",
             "contact": {
-                "email": "cipi@komodoplatform.com"
+                "email": "cipi(at)komodoplatform.com"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0,
-                "date": "Apr-23 02:20"
+                "date": "Apr-23 03:41"
             }
         },
         {
             "url": "http://eth3.cipig.net:8555",
             "contact": {
-                "email": "cipi@komodoplatform.com"
+                "email": "cipi(at)komodoplatform.com"
             },
             "atomic_dex_mobile": true,
             "current_status": {
                 "alive": true,
-                "uptime": "Apr-23 02:20",
+                "uptime": "Apr-23 03:41",
                 "downtime": 0,
-                "date": "Apr-23 02:20"
+                "date": "Apr-23 03:41"
             }
         }
     ]

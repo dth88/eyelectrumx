@@ -3,6 +3,7 @@ import json
 import requests
 import atexit
 from lib import electrum_lib
+from lib import electrums
 
 from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -12,13 +13,15 @@ app = Flask(__name__)
 
 
 electrum_urls = {}
+explorers_urls = {}
 
 
 @app.before_first_request
 def get_electrum_urls():
-    global electrum_urls 
+    global electrum_urls
     electrum_urls = electrum_lib.restore_electrums_from_backup()
-    stop_email_parsing()
+    global explorers_urls
+    explorers_urls = electrum_lib.restore_explorers_from_backup()
 
 
 
@@ -36,13 +39,13 @@ def filter_mobile():
 
 @app.route("/explorers")
 def explorers():
-    explorers_urls = electrum_lib.restore_explorers_from_backup()
+    global explorers_urls
     return render_template('explorers.html', explorers_urls=explorers_urls)
 
 
-@app.route("/api-docs")
+@app.route("/api")
 def api():
-    return 'api-docs coming...'
+    return render_template('api-docs.html')
 
 
 @app.errorhandler(404)
@@ -51,18 +54,28 @@ def page_not_found(e):
 
 
 
-def stop_email_parsing():
-    global electrum_urls
-    for k,v in electrum_urls.items():
-        for url in v:
-            try:
-                for k,v in url['contact'].items():
-                    if 'email' in k:
-                        left, right = v.split('@')
-                        v = '{}(at){}'.format(left, right)
-            except KeyError:
-                pass
+### API CALLS
 
+@app.route('/api/electrums')
+def get_all_electrums():
+    global electrum_urls
+    return jsonify(electrum_urls)
+
+
+@app.route('/api/atomicdex-mob')
+def get_only_atomicdex_mobile_electrums():
+    global electrum_urls
+    d = {}
+    for coin, urls in electrum_urls.items():
+        if coin in electrums.atomic_dex_mobile:
+            d[coin] = urls
+    return jsonify(d)
+
+
+@app.route('/api/explorers')
+def get_all_explorers():
+    global explorers_urls
+    return jsonify(explorers_urls)
 
 
 #scheduler = BackgroundScheduler()

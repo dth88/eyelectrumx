@@ -12,6 +12,17 @@ from electrums import (all_tickers, link, atomic_dex_mobile,
 
 
 
+
+def stop_email_parsing(electrum_urls):
+    for coin, urls in electrum_urls.items():
+        for url in urls:
+            email = url['contact'].get('email')
+            if email:
+                left, right = email.split('@')
+                url['contact']['email'] = '{}(at){}'.format(left, right)
+    return electrum_urls
+
+
 def get_explorers_json_data():
     explorers_json = {}
     with open('data/explorers.json', 'r') as f:
@@ -89,6 +100,7 @@ def gather_tcp_electrumx_links_into_dict(electrum_links):
                     url['contact'] = {}
                     urls.append(url)
         output[coin] = urls
+    output = stop_email_parsing(output)
     return output, counter
 
 
