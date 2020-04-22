@@ -4,21 +4,33 @@ import requests
 import atexit
 from lib import electrum_lib
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = Flask(__name__)
 
+
+electrum_urls = {}
+
+
+@app.before_first_request
+def get_electrum_urls():
+    global electrum_urls 
+    electrum_urls = electrum_lib.restore_electrums_from_backup()
+    stop_email_parsing()
+
+
+
 @app.route("/")
 def main():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
+    global electrum_urls
     return render_template('index.html', electrum_urls=electrum_urls)
 
 
 @app.route("/atomicdex-mobile")
 def filter_mobile():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
+    global electrum_urls
     return render_template('atomicdex.html', electrum_urls=electrum_urls)
 
 
@@ -26,6 +38,31 @@ def filter_mobile():
 def explorers():
     explorers_urls = electrum_lib.restore_explorers_from_backup()
     return render_template('explorers.html', explorers_urls=explorers_urls)
+
+
+@app.route("/api-docs")
+def api():
+    return 'api-docs coming...'
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return 'woops, page with this url does not exist', 404
+
+
+
+def stop_email_parsing():
+    global electrum_urls
+    for k,v in electrum_urls.items():
+        for url in v:
+            try:
+                for k,v in url['contact'].items():
+                    if 'email' in k:
+                        left, right = v.split('@')
+                        v = '{}(at){}'.format(left, right)
+            except KeyError:
+                pass
+
 
 
 #scheduler = BackgroundScheduler()
