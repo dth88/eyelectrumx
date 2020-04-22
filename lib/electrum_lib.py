@@ -7,26 +7,33 @@ from time import time, sleep
 from datetime import datetime
 from requests.exceptions import RequestException
 
-from electrum_list import electrum_links, atomic_dex_mobile
-from explorers_list import explorers_links
+from electrums import (all_tickers, link, atomic_dex_mobile,
+                       electrum_version_call, eth_call, eth_link)
 
 
-version_call = {
-    "jsonrpc" : "2.0",
-    "method": "server.version",
-    "params": [],
-    "id": 0
-}
+
+def get_explorers_json_data():
+    explorers_json = {}
+    with open('data/explorers.json', 'r') as f:
+        explorers_json = json.load(f)
+    return explorers_json
 
 
-eth_call = {
-    "jsonrpc" : "2.0",
-    "method": "web3_clientVersion",
-    "params": [],
-    "id": 0
-}
+def save_explorers_links_to_local_dict(explorers_json):
+    new_dict = {}
+    for ticker in explorers_json:
+        new_dict[ticker['abbr']] = ticker['explorerUrl']
+    return new_dict
 
 
+def combine_electrums_repo_links(all_tickers, link, eth_link):
+    repo_links = {}
+    for ticker in all_tickers:
+        if 'ETH' in ticker:
+            repo_links[ticker] = '{}{}'.format(eth_link, ticker)
+        else:
+            repo_links[ticker] = '{}{}'.format(link, ticker)
+    return repo_links
 
 
 def measure(func):
@@ -45,8 +52,12 @@ def measure(func):
 def gather_tcp_electrumx_links_into_dict(electrum_links):
     output = {}
     counter = 0
-    for k,v in electrum_links.items():
-        r = requests.get(v).json()
+    for coin, link in electrum_links.items():
+        print(link)
+        try:
+            r = requests.get(link).json()
+        except Exception as e:
+            print(e)
         urls = []
         if 'rpc_nodes' in r:
             for url in r['rpc_nodes']:
@@ -54,19 +65,30 @@ def gather_tcp_electrumx_links_into_dict(electrum_links):
                 counter += 1
         else:
             for url in r:
+                new_contacts = {}
                 try:
                     if 'SSL' in url['protocol']:
                         continue
-                    elif 'TCP' in url['protocol']:
-                        urls.append(url)
-                        counter += 1
                 except KeyError:
+                    pass
+                try:
+                    for contact in url['contact']:
+                        email = contact.get('email')
+                        discord = contact.get('discord')
+                        github = contact.get('github')
+                        if email:
+                            new_contacts['email'] = email
+                        if discord:
+                            new_contacts['discord'] = discord
+                        if github:
+                            new_contacts['github'] = github
+                    url['contact'] = new_contacts
                     urls.append(url)
                     counter += 1
-                except TypeError:
+                except KeyError:
+                    url['contact'] = {}
                     urls.append(url)
-                    counter += 1
-        output[k] = urls
+        output[coin] = urls
     return output, counter
 
 
@@ -178,10 +200,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                 try:
                                     url['current_status']['version'] = r.split()[4][:-2]
                                 except IndexError:
-                                    print("EXCEPTION!!!11")
-                                    print(url)
-                                    print(r)
-                                    print("EXCEPTION!!111")
+                                    print("EXCEPTION!!!11  Index Error!")
+                                    print('url: {}, response: {}'.format(url, r))
                             url['current_status']['downtime'] = 0
                             url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
                     except KeyError:
@@ -195,10 +215,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             try:
                                 url['current_status']['version'] = r.split()[4][:-2]
                             except IndexError:
-                                print("EXCEPTION!!!11")
-                                print(url)
-                                print(r)
-                                print("EXCEPTION!!!11")
+                                print("EXCEPTION!!!11  Index Error!")
+                                print('url: {}, response: {}'.format(url, r))
                         url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
                         url['current_status']['downtime'] = 0
                 #if electrum is unreachable
@@ -254,6 +272,9 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     return electrum_urls
 
 
+
+#utilities
+
 def backup_electrums(electrum_urls):
     with open('data/backup_electrums.json', 'w') as f:
         json.dump(electrum_urls, f, indent=4, default=str)
@@ -306,13 +327,18 @@ if __name__ == "__main__":
     #result = tcp_call_electrumx('electrum2.cipig.net', 10054, version_call)
     #print(result, end='')
 
-    d, c = gather_tcp_electrumx_links_into_dict(electrum_links)
-    backup_electrums_links(d)
-
     
+    #backup_electrums_links(d)
+
+    repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
+    exp_json = get_explorers_json_data()
+    exp_local_links = save_explorers_links_to_local_dict(exp_json)
+
+    d, c = gather_tcp_electrumx_links_into_dict(repo_links)
     #d = restore_from_backup()
-    d = call_electrums_and_update_status(d, version_call, eth_call)
+
+    d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
     backup_electrums(d)
-    de = call_explorers_and_update_status(explorers_links)
+    de = call_explorers_and_update_status(exp_local_links)
     backup_explorers(de)
     #pretty_print(d)
