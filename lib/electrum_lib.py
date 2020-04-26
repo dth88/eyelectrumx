@@ -12,7 +12,6 @@ from electrums import (all_tickers, link, atomic_dex_mobile,
 
 
 
-
 def stop_email_parsing(electrum_urls):
     for coin, urls in electrum_urls.items():
         for url in urls:
@@ -37,16 +36,6 @@ def save_explorers_links_to_local_dict(explorers_json):
     return new_dict
 
 
-def combine_electrums_repo_links(all_tickers, link, eth_link):
-    repo_links = {}
-    for ticker in all_tickers:
-        if 'ETH' in ticker:
-            repo_links[ticker] = '{}{}'.format(eth_link, ticker)
-        else:
-            repo_links[ticker] = '{}{}'.format(link, ticker)
-    return repo_links
-
-
 def measure(func):
     @wraps(func)
     def _time_it(*args, **kwargs):
@@ -59,12 +48,22 @@ def measure(func):
     return _time_it
 
 
+def combine_electrums_repo_links(all_tickers, link, eth_link):
+    repo_links = {}
+    for ticker in all_tickers:
+        if 'ETH' in ticker:
+            repo_links[ticker] = '{}{}'.format(eth_link, ticker)
+        else:
+            repo_links[ticker] = '{}{}'.format(link, ticker)
+    return repo_links
+
+
+
 @measure
 def gather_tcp_electrumx_links_into_dict(electrum_links):
     output = {}
     counter = 0
     for coin, link in electrum_links.items():
-        print(link)
         try:
             r = requests.get(link).json()
         except Exception as e:
@@ -110,7 +109,7 @@ def http_call_explorer(url):
 
 
 @measure
-def call_explorers_and_update_status(explorers_urls):
+def call_explorers_and_update_status_new(explorers_urls):
     output = {}
     for coin, urls in explorers_urls.items():
         updated_urls = []
@@ -147,6 +146,41 @@ def call_explorers_and_update_status(explorers_urls):
             updated_urls.append(new_url)
         output[coin] = updated_urls
     return output
+
+
+@measure
+def call_explorers_and_update_status(explorers_urls):
+    for coin, urls in explorers_urls.items():
+        for url in urls:
+            try:
+                _ = http_call_explorer(url['url'])
+                try:
+                    #update if status exists
+                    if url['current_status']:
+                        url['current_status']['alive'] = True
+                        url['current_status']['downtime'] = 0
+                        url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
+                except KeyError:
+                    #create if there's no status dict
+                    url['current_status'] = {}
+                    url['current_status']['alive'] = True
+                    url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
+                    url['current_status']['downtime'] = 0
+            #if explorer is unreachable
+            except RequestException:
+                try:
+                    #update if status exists
+                    if url['current_status']:
+                        url['current_status']['alive'] = False
+                        url['current_status']['uptime'] = 0
+                        url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['downtime'] else url['current_status']['downtime']
+                except KeyError:
+                    #create if there's no status dict
+                    url['current_status'] = {}
+                    url['current_status']['alive'] = False
+                    url['current_status']['uptime'] = 0
+                    url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M")
+    return explorers_urls
 
 
 # TODO: figure out ssl...
@@ -259,14 +293,12 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             url['current_status']['alive'] = True
                             url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
                             url['current_status']['downtime'] = 0
-                            url['current_status']['date'] = datetime.now().strftime("%b-%d %H:%M")
                     except KeyError:
                         #creation for the first time
                         url['current_status'] = {}
                         url['current_status']['alive'] = True
                         url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
                         url['current_status']['downtime'] = 0
-                        url['current_status']['date'] = datetime.now().strftime("%b-%d %H:%M")
                 except RequestException:
                     # if parity node is unreachable
                     try:
@@ -288,23 +320,23 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
 #utilities
 
 def backup_electrums(electrum_urls):
-    with open('data/backup_electrums.json', 'w') as f:
+    with open('lib/data/backup_electrums.json', 'w') as f:
         json.dump(electrum_urls, f, indent=4, default=str)
 
 
 def backup_explorers(explorers_urls):
-    with open('data/backup_explorers.json', 'w') as f:
+    with open('lib/data/backup_explorers.json', 'w') as f:
         json.dump(explorers_urls, f, indent=4, default=str)
 
 
 def backup_electrums_links(links):
-    with open('data/backup_electrum_links.json', 'w') as f:
+    with open('lib/data/backup_electrum_links.json', 'w') as f:
         json.dump(links, f, indent=4, default=str)
 
 
 def restore_electrums_links():
     backup = {}
-    with open('data/backup_electrum_links.json', 'r') as f:
+    with open('lib/data/backup_electrum_links.json', 'r') as f:
         backup = json.load(f)
     return backup
 
@@ -335,22 +367,24 @@ def pretty_print(electrum_urls):
 
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     #result = tcp_call_electrumx('electrum2.cipig.net', 10054, version_call)
     #print(result, end='')
 
     
     #backup_electrums_links(d)
 
-    repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
-    exp_json = get_explorers_json_data()
-    exp_local_links = save_explorers_links_to_local_dict(exp_json)
+    #repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
+    #exp_json = get_explorers_json_data()
+    #exp_local_links = save_explorers_links_to_local_dict(exp_json)
+    #exp_local_links = restore_explorers_from_backup()
 
-    d, c = gather_tcp_electrumx_links_into_dict(repo_links)
-    #d = restore_from_backup()
+    #d, c = gather_tcp_electrumx_links_into_dict(repo_links)
+    #d = restore_electrums_from_backup()
 
-    d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
-    backup_electrums(d)
-    de = call_explorers_and_update_status(exp_local_links)
-    backup_explorers(de)
+    #d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
+    #backup_electrums(d)
+
+    #de = call_explorers_and_update_status(exp_local_links)
+    #backup_explorers(de)
     #pretty_print(d)

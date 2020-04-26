@@ -1,4 +1,3 @@
-import datetime
 import json
 import requests
 import atexit
@@ -17,12 +16,11 @@ explorers_urls = {}
 
 
 @app.before_first_request
-def get_electrum_urls():
+def restore_data_from_backup():
     global electrum_urls
     electrum_urls = electrum_lib.restore_electrums_from_backup()
     global explorers_urls
     explorers_urls = electrum_lib.restore_explorers_from_backup()
-
 
 
 @app.route("/")
@@ -46,12 +44,6 @@ def explorers():
 @app.route("/api")
 def api():
     return render_template('api-docs.html')
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return 'woops, page with this url does not exist', 404
-
 
 
 ### API CALLS
@@ -78,16 +70,34 @@ def get_all_explorers():
     return jsonify(explorers_urls)
 
 
-#scheduler = BackgroundScheduler()
-#scheduler.add_job(func=mine_one_block_first_node, trigger="interval", seconds=2)
-#if estimatesmartfee:
-#    scheduler.add_job(func=combined_send, trigger="interval", seconds=1)
 
-#scheduler.start()
+### BACKGROUND JOBS
+
+def gather_and_backup_electrums():
+    print('started background job: electrums update')
+    global electrum_urls
+    electrum_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
+    electrum_lib.backup_electrums(electrum_urls)
+    print('finished background job: electrums update and backup')
 
 
 
-#atexit.register(lambda: scheduler.shutdown())
+def gather_and_backup_explorers():
+    print('started background job: explorers update')
+    global explorers_urls
+    explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
+    electrum_lib.backup_explorers(explorers_urls)
+    print('finished background job: explorers update and backup')
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
+
+
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
+
+
 
 
 if __name__ == "__main__":
