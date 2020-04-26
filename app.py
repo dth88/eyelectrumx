@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 import atexit
@@ -83,11 +84,12 @@ def gather_and_backup_electrums():
 
 
 def gather_and_backup_explorers():
-    print('started background job: explorers update')
+    app.logger.info('started background job: explorers update')
     global explorers_urls
     explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
     electrum_lib.backup_explorers(explorers_urls)
-    print('finished background job: explorers update and backup')
+    app.logger.info('finished background job: explorers update and backup')
+
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
@@ -101,4 +103,4 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
-    app.run(host="localhost", port="8080")
+    app.run(host="0.0.0.0", port=os.environ['PORT'])
