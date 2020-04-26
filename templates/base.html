@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -16,10 +16,10 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon/favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='/favicon/favicon-16x16.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#5A7CAC">
 
@@ -30,7 +30,7 @@
 <body>
     <nav id="topnav">
         <div class="topnav-left">
-            <a id="toplogo" href="/"><img src={{ url_for('static', filename='/favicon/favicon-32x32.png') }} alt="Komodo Stats"></a>
+            <a id="toplogo" href="/"><img src={{ url_for('static', filename='favicon/favicon-32x32.png') }} alt="Komodo Stats"></a>
             <ul class="topnavmenu topnav-mobile-expand">
                 <li class="topnav-haschildren">
                     <input type="checkbox" id="drop-1">
@@ -53,6 +53,6 @@
     <div id="content">
         {% block content %}{% endblock %}
     </div>
-<script src="{{ url_for('static', filename='/js/script.js') }}" language="javascript" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}" language="javascript" type="text/javascript"></script>
 </body>
 </html>
