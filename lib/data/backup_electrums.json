@@ -84,10 +84,10 @@
             "contact": {},
             "atomic_dex_mobile": true,
             "current_status": {
-                "alive": false,
+                "alive": true,
                 "version": "1.10.1",
-                "uptime": 0,
-                "downtime": "Apr-26 18:52"
+                "uptime": "Apr-26 18:54",
+                "downtime": 0
             }
         }
     ],
