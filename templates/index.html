@@ -5,6 +5,7 @@
             <tr>
                 <th style="text-align: center;">Coin</th>
                 <th style="text-align: center;">URL</th>
+                <th>SSL</th>
                 <th>Status</th>
                 <th style="text-align: center;">Since</th>
                 <th>ElectrumX version</th>
@@ -17,6 +18,11 @@
             <tr>
                 <td class="aligncenter">{{coin}}</td>
                 <td class="aligncenter">{{url['url']}}</td>
+                {% if url['protocol'] and url['protocol'] == 'SSL' %}
+                <td class="aligncenter">YES</td>
+                {% else %}
+                <td class="aligncenter"></td>
+                {% endif %}
                 {% if url['current_status']['alive'] %}
                     <td style="background:green">Alive!</td>
                     <td>{{ url['current_status']['uptime'] }}</td>
@@ -30,6 +36,7 @@
                 {% else %}
                 <td class="aligncenter">Unknown</td>
                 {% endif %}
+
                 {% if url['contact'] %}
                     {% for k,v in url['contact'].items() %}
                         <td> | {% if 'discord' in k %}Discord: {{ v }} | {% elif 'email' in k %} Email: {{ v }} | {% elif 'github' in k %} <a href={{ v }}>Github</a> | {% endif %}</td>
