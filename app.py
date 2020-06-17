@@ -1,10 +1,14 @@
 import os
 import json
-import requests
+import boto3
 import atexit
+import logging
+import requests
+
 from lib import electrum_lib
 from lib import electrums
 
+from botocore.exceptions import ClientError
 from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -84,17 +88,35 @@ def gather_and_backup_electrums():
 
 
 def gather_and_backup_explorers():
-    app.logger.info('started background job: explorers update')
+    print('started background job: explorers update')
     global explorers_urls
     explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
     electrum_lib.backup_explorers(explorers_urls)
-    app.logger.info('finished background job: explorers update and backup')
+    print('finished background job: explorers update and backup')
+
+
+def send_data_to_aws():
+    print('started background job: send electrums to aws')
+    file_name = 'lib/data/backup_electrums.json'
+    bucket = 'rocky-cove-80142'
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(file_name, bucket)
+        print('finished background job: send electrums to aws')
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+    
+
+def send_explorers_data_to_aws():
+    pass
 
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
-
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=150)
+scheduler.add_job(func=send_data_to_aws, trigger="interval", minutes=5)
 
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
