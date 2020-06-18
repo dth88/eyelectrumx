@@ -16,6 +16,13 @@ from apscheduler.schedulers.background import BackgroundScheduler
 app = Flask(__name__)
 
 
+@app.before_first_request
+def restore_data_from_aws():
+    logging.info('@before_first_request execution started')
+    restore_electrums_from_aws()
+    restore_explorers_from_aws()
+    logging.info('@before_first_request execution finished')
+
 
 def restore_electrums_from_aws():
     s3_client = boto3.client('s3')
@@ -45,12 +52,8 @@ def restore_explorers_from_aws():
     logging.info('AWS-S3 explorers download: success')
 
 
-@app.before_first_request
-def restore_data_from_aws():
-    logging.info('before_first_request execution started')
-    restore_electrums_from_aws()
-    restore_explorers_from_aws()
 
+# TEMPLATES
 
 @app.route("/")
 def main():
@@ -75,7 +78,7 @@ def api():
     return render_template('api-docs.html')
 
 
-### API CALLS
+### ENDPOINTS
 
 @app.route('/api/electrums')
 def get_all_electrums():
@@ -98,7 +101,9 @@ def get_all_explorers():
     explorers_urls = electrum_lib.restore_explorers_from_backup()
     return jsonify(explorers_urls)
 
-
+@app.route('/api/jobs')
+def print_scheduled_jobs():
+    return scheduler.print_jobs()
 
 ### BACKGROUND JOBS
 
@@ -108,7 +113,6 @@ def gather_and_backup_electrums():
     electrum_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
     electrum_lib.backup_electrums(electrum_urls)
     logging.info('finished background job: electrums update and backup')
-
 
 
 def gather_and_backup_explorers():
@@ -160,10 +164,10 @@ def backup_explorers_data_to_aws():
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=80)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=150)
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", minutes=1)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=155)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
-scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=7)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
