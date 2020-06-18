@@ -31,7 +31,7 @@ atomic_dex_pro =    ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
                      'MGW',  'PANGEA', 'REVS',   'CHIPS']
 
                              
-#electrum calls
+#electrum call
 electrum_version_call = {
     "jsonrpc" : "2.0",
     "method": "server.version",
