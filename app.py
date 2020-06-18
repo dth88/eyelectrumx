@@ -79,35 +79,39 @@ def get_all_explorers():
 ### BACKGROUND JOBS
 
 def gather_and_backup_electrums():
-    print('started background job: electrums update')
+    logging.info('started background job: electrums update')
     global electrum_urls
     electrum_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
     electrum_lib.backup_electrums(electrum_urls)
-    print('finished background job: electrums update and backup')
+    logging.info('finished background job: electrums update and backup')
 
 
 
 def gather_and_backup_explorers():
-    print('started background job: explorers update')
+    logging.info('started background job: explorers update and backup')
     global explorers_urls
     explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
     electrum_lib.backup_explorers(explorers_urls)
-    print('finished background job: explorers update and backup')
+    logging.info('finished background job: explorers update and backup')
 
 
 def send_data_to_aws():
-    print('started background job: send electrums to aws')
+    logging.info('started background job: backup electrums data to aws')
     file_name = 'lib/data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
+    object_name = 'backup_electrums.json'
+
+    if object_name is None:
+        object_name = file_name
+
     s3_client = boto3.client('s3')
     try:
-        response = s3_client.upload_file(file_name, bucket)
-        print('finished background job: send electrums to aws')
+        response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
-        return False
-    return True
-    
+        logging.info('AWS-S3 upload: something went wrong')
+        return
+    logging.info('AWS-S3 upload: success')
 
 def send_explorers_data_to_aws():
     pass
