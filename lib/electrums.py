@@ -10,25 +10,25 @@ all_tickers = ['AXE',      'BCH',     'BET',    'BOTS',     'BTC',      'BTCH',
                'VOTE2020', 'VRSC',    'VTC',    'WLC',      'XBC',      'XZC',
                'ZEC',      'ZER',     'ZILLA',  'ETH']
 
-#'AYWA', "AWC", "BAT", "DAI", 'FJC', "VOTE", 'K64', 'KV', 'MNX', "PAX", 'PAC', "TUSD" "BUSD"
+
 #official electrums/parity-node repo links
 link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/electrums/"
 eth_link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/ethereum/"
 
 
 #filters
-atomic_dex_mobile = ['KMD',  'BTC', 'BCH',  'DASH', 'DEX', 'DGB',
-                     'LTC',  'ETH',  'USDC',   'MORTY',  'RICK',  
-                     'HUSH', 'LABS',  'QTUM', 'RVN',  'ZEC', 
-                     'SUPERNET', 'VRSC', 'AXE', 'ZILLA', 'DOGE',
-                     'ECA', 'FTC', 'NAV', 'RFOX', 'OOT', 'VOTE2020']
+atomic_dex_mobile = ['KMD',  'BTC',   'BCH',   'DASH',  'DEX',      'DGB',
+                     'LTC',  'ETH',   'USDC',  'MORTY', 'RICK',     'HUSH',
+                     'LABS', 'QTUM',  'RVN',   'ZEC',   'SUPERNET', 'VRSC',
+                     'AXE',  'ZILLA', 'DOGE',  'ECA',   'FTC',      'NAV',
+                     'RFOX', 'OOT',   'VOTE2020']
                      
 
-atomic_dex_pro =    ["KMD",  "BTC",  "BCH",  "DASH", "DEX",  "DGB",
-                     "LTC", "ETH", "USDC", "MORTY", "RICK", "HUSH",
-                     "LABS",  "QTUM",  "RVN",  "ZEC",  "SUPERNET",  
-                     "VRSC", "BET", "BOTS", "CRYPTO", "ILN" "JUMBLR", 
-                     "MCL", "MGW", "PANGEA", "REVS", "CHIPS"]
+atomic_dex_pro =    ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
+                     'LTC',  'ETH',    'USDC',   'MORTY',  'RICK',     'HUSH',
+                     'LABS', 'QTUM',   'RVN',    'ZEC',    'SUPERNET', 'VRSC',
+                     'BET',  'BOTS',   'CRYPTO', 'ILN',    'JUMBLR',   'MCL',
+                     'MGW',  'PANGEA', 'REVS',   'CHIPS']
 
                              
 #electrum calls
