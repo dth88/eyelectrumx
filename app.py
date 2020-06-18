@@ -53,12 +53,12 @@ def restore_explorers_from_aws():
 
 
 
-# TEMPLATES
+### TEMPLATES
 
 @app.route("/")
 def main():
     electrum_urls = electrum_lib.restore_electrums_from_backup()
-    return render_template('index.html', electrum_urls=electrum_urls)
+    return render_template('electrums.html', electrum_urls=electrum_urls)
 
 
 @app.route("/atomicdex-mobile")
@@ -104,6 +104,10 @@ def get_all_explorers():
 @app.route('/api/jobs')
 def print_scheduled_jobs():
     return jsonify(scheduler.print_jobs())
+
+
+
+
 
 ### BACKGROUND JOBS
 
@@ -165,10 +169,11 @@ def backup_explorers_data_to_aws():
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", minutes=1)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=155)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", minutes=1)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
 scheduler.start()
+
 atexit.register(lambda: scheduler.shutdown())
 
 

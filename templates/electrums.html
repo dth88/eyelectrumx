@@ -32,7 +32,7 @@
                 {% endif %}
                 {% if url['contact'] %}
                     {% for k,v in url['contact'].items() %}
-                        <td> | {% if 'discord' in k %}Discord: {{ v }} | {% elif 'email' in k %} Email: {{ v }} | {% elif 'github' in k %} <a href={{ v }}>Github</a> | {% endif %}</td>
+                        <td> | {% if 'discord' in k %}Discord: {{ v }} | {% elif 'email' in k %} {{ v }} | {% elif 'github' in k %} <a href={{ v }}>Github</a> | {% endif %}</td>
                     {% endfor %}
                 {% else %}
                     <td>| No contact info |</td>
