@@ -14,10 +14,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = Flask(__name__)
-s3_client = boto3.client('s3')
+
 
 
 def restore_electrums_from_aws():
+    s3_client = boto3.client('s3')
     file_name = 'lib/data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
@@ -30,9 +31,8 @@ def restore_electrums_from_aws():
     logging.info('AWS-S3 electrums download: success')
 
 
-
 def restore_explorers_from_aws():
-    logging.info('before_first_start execution started')
+    s3_client = boto3.client('s3')
     file_name = 'lib/data/backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
@@ -125,6 +125,8 @@ def backup_electrums_data_to_aws():
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
+    s3_client = boto3.client('s3')
+
     if object_name is None:
         object_name = file_name
 
@@ -143,6 +145,8 @@ def backup_explorers_data_to_aws():
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
+    s3_client = boto3.client('s3')
+
     if object_name is None:
         object_name = file_name
 
@@ -156,7 +160,7 @@ def backup_explorers_data_to_aws():
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=80)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=150)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=7)
