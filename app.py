@@ -27,7 +27,7 @@ def restore_data_from_aws():
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
     try:
-        s3.download_file(bucket, object_name, file_name)
+        s3_client.download_file(bucket, object_name, file_name)
     except ClientError as e:
         logging.error(e)
         logging.info('AWS-S3 upload: failure')
