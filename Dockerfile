@@ -10,4 +10,4 @@ ENV PYTHONPATH "${PYTHONPATH}:/app/lib"
 
 EXPOSE 80
 
-CMD ["gunicorn", "app:app", "--log-file", "logs/gunicorn.log", "--max-requests 1200"]
+CMD ["gunicorn", "app:app", "--log-file", "logs/gunicorn.log", "--max-requests", "1200"]
