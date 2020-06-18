@@ -19,21 +19,39 @@ s3_client = boto3.client('s3')
 electrum_urls = {}
 explorers_urls = {}
 
-
-@app.before_first_request
-def restore_data_from_aws():
-    logging.info('before_first_start execution started')
+def restore_electrums_from_aws():
     file_name = 'lib/data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
     try:
         s3_client.download_file(bucket, object_name, file_name)
     except ClientError as e:
-        logging.error(e)
-        logging.info('AWS-S3 upload: failure')
+        app.logger.error(e)
+        app.logger.info('AWS-S3 electrums download: failure')
         return
-    logging.info('AWS-S3 upload: success')
+    app.logger.info('AWS-S3 electrums download: success')
 
+
+
+#def restore_explorers_from_aws():
+#    logging.info('before_first_start execution started')
+#    file_name = 'lib/data/backup_explorers.json'
+#    bucket = 'rocky-cove-80142'
+#    object_name = 'backup_explorers.json'
+#    try:
+#        s3_client.download_file(bucket, object_name, file_name)
+#    except ClientError as e:
+#        logging.error(e)
+#        logging.info('AWS-S3 upload: failure')
+#        return
+#    logging.info('AWS-S3 upload: success')
+
+
+@app.before_first_request
+def restore_data_from_aws():
+    app.logger.info('before_first_request execution started')
+    restore_electrums_from_aws()
+    #restore_explorers_from_aws()
     global electrum_urls
     electrum_urls = electrum_lib.restore_electrums_from_backup()
     global explorers_urls
@@ -100,24 +118,24 @@ def get_all_explorers():
 ### BACKGROUND JOBS
 
 def gather_and_backup_electrums():
-    logging.info('started background job: electrums update')
+    app.logger.info('started background job: electrums update')
     global electrum_urls
     electrum_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
     electrum_lib.backup_electrums(electrum_urls)
-    logging.info('finished background job: electrums update and backup')
+    app.logger.info('finished background job: electrums update and backup')
 
 
 
 def gather_and_backup_explorers():
-    logging.info('started background job: explorers update and backup')
+    app.logger.info('started background job: explorers update and backup')
     global explorers_urls
     explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
     electrum_lib.backup_explorers(explorers_urls)
-    logging.info('finished background job: explorers update and backup')
+    app.logger.info('finished background job: explorers update and backup')
 
 
-def send_electrums_data_to_aws():
-    logging.info('started background job: backup electrums data to aws')
+def backup_electrums_data_to_aws():
+    app.logger.info('started background job: backup electrums data to aws')
     file_name = 'lib/data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
@@ -128,20 +146,35 @@ def send_electrums_data_to_aws():
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
-        logging.error(e)
-        logging.info('AWS-S3 upload: failure')
+        app.logger.error(e)
+        app.logger.info('AWS-S3 electrums upload: failure')
         return
-    logging.info('AWS-S3 upload: success')
+    app.logger.info('AWS-S3 electrums upload: success')
 
-def send_explorers_data_to_aws():
-    pass
+
+def backup_explorers_data_to_aws():
+    app.logger.info('started background job: backup explorers data to aws')
+    file_name = 'lib/data/backup_explorers.json'
+    bucket = 'rocky-cove-80142'
+    object_name = 'backup_explorers.json'
+
+    if object_name is None:
+        object_name = file_name
+
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        app.logger.error(e)
+        app.logger.info('AWS-S3 explorers upload: failure')
+        return
+    app.logger.info('AWS-S3 explorers upload: success')
 
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=150)
-scheduler.add_job(func=send_electrums_data_to_aws, trigger="interval", minutes=5)
-
+scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=7)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
