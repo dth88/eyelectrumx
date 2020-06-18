@@ -14,18 +14,39 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = Flask(__name__)
-
+s3_client = boto3.client('s3')
 
 electrum_urls = {}
 explorers_urls = {}
 
 
 @app.before_first_request
-def restore_data_from_backup():
+def restore_data_from_aws():
+    logging.info('before_first_start execution started')
+    file_name = 'lib/data/backup_electrums.json'
+    bucket = 'rocky-cove-80142'
+    object_name = 'backup_electrums.json'
+    try:
+        s3.download_file(bucket, object_name, file_name)
+    except ClientError as e:
+        logging.error(e)
+        logging.info('AWS-S3 upload: failure')
+        return
+    logging.info('AWS-S3 upload: success')
+
     global electrum_urls
     electrum_urls = electrum_lib.restore_electrums_from_backup()
     global explorers_urls
     explorers_urls = electrum_lib.restore_explorers_from_backup()
+
+
+
+#@app.before_first_request
+#def restore_data_from_backup():
+#    global electrum_urls
+#    electrum_urls = electrum_lib.restore_electrums_from_backup()
+#    global explorers_urls
+#    explorers_urls = electrum_lib.restore_explorers_from_backup()
 
 
 @app.route("/")
@@ -95,7 +116,7 @@ def gather_and_backup_explorers():
     logging.info('finished background job: explorers update and backup')
 
 
-def send_data_to_aws():
+def send_electrums_data_to_aws():
     logging.info('started background job: backup electrums data to aws')
     file_name = 'lib/data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
@@ -104,12 +125,11 @@ def send_data_to_aws():
     if object_name is None:
         object_name = file_name
 
-    s3_client = boto3.client('s3')
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
-        logging.info('AWS-S3 upload: something went wrong')
+        logging.info('AWS-S3 upload: failure')
         return
     logging.info('AWS-S3 upload: success')
 
@@ -120,7 +140,7 @@ def send_explorers_data_to_aws():
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=150)
-scheduler.add_job(func=send_data_to_aws, trigger="interval", minutes=5)
+scheduler.add_job(func=send_electrums_data_to_aws, trigger="interval", minutes=5)
 
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())

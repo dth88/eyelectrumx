@@ -170,7 +170,7 @@
             "url": "https://explorer.feathercoin.com/",
             "current_status": {
                 "alive": true,
-                "uptime": "Apr-26 16:03",
+                "uptime": "Jun-17 20:25",
                 "downtime": 0
             }
         }
@@ -339,9 +339,9 @@
         {
             "url": "https://vote.kmdexplorer.io/",
             "current_status": {
-                "alive": true,
-                "uptime": "Apr-26 16:03",
-                "downtime": 0
+                "alive": false,
+                "uptime": 0,
+                "downtime": "Jun-11 17:02"
             }
         }
     ],
