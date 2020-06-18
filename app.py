@@ -103,7 +103,7 @@ def get_all_explorers():
 
 @app.route('/api/jobs')
 def print_scheduled_jobs():
-    return scheduler.print_jobs()
+    return jsonify(scheduler.print_jobs())
 
 ### BACKGROUND JOBS
 
