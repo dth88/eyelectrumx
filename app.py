@@ -69,13 +69,13 @@ def main():
 @app.route("/adex-mob")
 def filter_mob():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
-        return render_template('adex-mob.html', electrum_urls=electrum_urls, adexmob=electrums.adex-mob)
+        return render_template('adex-mob.html', electrum_urls=electrum_urls, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
-        return render_template('adex-pro.html', electrum_urls=electrum_urls, adexpro=electrums.adex-pro)
+        return render_template('adex-pro.html', electrum_urls=electrum_urls, adexpro=electrums.adex_pro)
 
 
 @app.route("/explorers")
@@ -102,7 +102,7 @@ def get_only_adex_mob_electrums():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
         d = {}
         for coin, urls in electrum_urls.items():
-            if coin in electrums.adex-mob:
+            if coin in electrums.adex_mob:
                 d[coin] = urls
         return jsonify(d)
 
@@ -112,7 +112,7 @@ def get_only_adex_pro_electrums():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
         d = {}
         for coin, urls in electrum_urls.items():
-            if coin in electrums.adex-pro:
+            if coin in electrums.adex_pro:
                 d[coin] = urls
         return jsonify(d)
 
@@ -144,18 +144,18 @@ def measure(func):
 @measure
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
-    with open('lib/data/backup_electrums.json', 'rw') as electrum_urls:
+    with open('lib/data/backup_electrums.json') as electrum_urls:
         updated_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
-        json.dump(updated_urls, f, indent=4, default=str)
+        json.dump(updated_urls, 'lib/data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: electrums update and backup')
 
 
 @measure
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
-    with open('lib/data/backup_electrums.json', 'rw') as explorers_urls:
+    with open('lib/data/backup_electrums.json') as explorers_urls:
         updated_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
-        json.dump(updated_urls, f, indent=4, default=str)
+        json.dump(updated_urls, 'lib/data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: explorers update and backup')
 
 
@@ -168,7 +168,7 @@ def backup_electrums_data_to_aws():
     s3_client = boto3.client('s3')
 
     try:
-        response = s3_client.upload_file(file_name, bucket, object_name)
+        s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
         logging.info('AWS-S3 electrums upload: failure')
@@ -185,7 +185,7 @@ def backup_explorers_data_to_aws():
     s3_client = boto3.client('s3')
 
     try:
-        response = s3_client.upload_file(file_name, bucket, object_name)
+        s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
         logging.info('AWS-S3 explorers upload: failure')
@@ -204,5 +204,4 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run(host="0.0.0.0", port=os.environ['PORT'])
+    app.run(host="0.0.0.0", port=os.environ['PORT'], debug=True)
