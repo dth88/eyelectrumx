@@ -17,14 +17,14 @@ eth_link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/ethere
 
 
 #filters
-adex-mob = ['KMD',  'BTC',   'BCH',   'DASH',  'DEX',      'DGB',
+adex_mob = ['KMD',  'BTC',   'BCH',   'DASH',  'DEX',      'DGB',
             'LTC',  'ETH',   'USDC',  'MORTY', 'RICK',     'HUSH',
             'LABS', 'QTUM',  'RVN',   'ZEC',   'SUPERNET', 'VRSC',
             'AXE',  'ZILLA', 'DOGE',  'ECA',   'FTC',      'NAV',
             'RFOX', 'OOT',   'VOTE2020']
                      
 
-adex-pro = ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
+adex_pro = ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
             'LTC',  'ETH',    'USDC',   'MORTY',  'RICK',     'HUSH',
             'LABS', 'QTUM',   'RVN',    'ZEC',    'SUPERNET', 'VRSC',
             'BET',  'BOTS',   'CRYPTO', 'ILN',    'JUMBLR',   'MCL',

@@ -17,7 +17,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 logging.basicConfig(filename='logs/flask.log',level=logging.DEBUG)
-#logging.getLogger('apscheduler').setLevel(logging.DEBUG)
+logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
 @app.before_first_request
@@ -98,7 +98,7 @@ def get_all_electrums():
 
 
 @app.route('/api/adex-mob')
-def get_only_atomicdex_mobile_electrums():
+def get_only_adex_mob_electrums():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
         d = {}
         for coin, urls in electrum_urls.items():
@@ -108,7 +108,7 @@ def get_only_atomicdex_mobile_electrums():
 
 
 @app.route('/api/adex-pro')
-def get_only_atomicdex_mobile_electrums():
+def get_only_adex_pro_electrums():
     with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
         d = {}
         for coin, urls in electrum_urls.items():

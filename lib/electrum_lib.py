@@ -7,8 +7,7 @@ from time import time, sleep
 from datetime import datetime
 from requests.exceptions import RequestException
 
-from electrums import (all_tickers, link, atomic_dex_mobile,
-                       electrum_version_call, eth_call, eth_link)
+from electrums import (all_tickers, link, electrum_version_call, eth_call, eth_link)
 
 
 
