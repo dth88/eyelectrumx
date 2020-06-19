@@ -222,8 +222,8 @@ def http_call_electrumx(url, content):
 def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     for coin, urls in electrum_urls.items():
         for url in urls:
-            #if url['url'].split(':') has exactly 2 members 
-            #then we create a simple tcp call with socket
+            #if url['url'].split(':') has exactly 2 members then
+            #we do simple tcp call with socket
             try:
                 electrum, port = url['url'].split(':')
                 #if electrum is reachable
