@@ -8,12 +8,12 @@
                     <th>Status</th>
                     <th style="text-align: center;">Since</th>
                     <th>ElectrumX version</th>
-                    <th colspan="2" style="text-align: center; max-width: 100px;">Contact</th>
+                    <th colspan="2" style="text-align: center; font-size: medium;">Contacts (email,discord,github)</th>
                 </tr>
             </thead>
             <tbody>
-            {% for coin, urls in electrum_urls.items() %}
-                {% if coin in adex-mob %}
+            {% for coin, urls in urlz.items() %}
+                {% if coin in adexmob %}
                     {% for url in urls %}
                         <tr>
                             <td class="aligncenter">{{coin}}</td>
@@ -34,14 +34,14 @@
 
                             {% if url['contact']%}
                                 {% for k,v in url['contact'].items() %}
-                                <td> | {% if 'discord' in k %}Discord: {{ v }} | {% elif 'email' in k %} Email: {{ v }} | {% elif 'github' in k %} <a href={{ v }}>Github</a> | {% endif %}</td>
+                                <td>{% if 'discord' in k %}{{v}} {% elif 'email' in k %} {{v}}{% elif 'github' in k %} <a href={{v}}>Github</a></td>{% endif %}
                                 {% endfor %}
                             {% else %}
-                                <td>|                       No contact info                               |</td>
+                            <td colspan="2" style="text-align: left;">(None) The dude is off the grid, yo!</td>
                             {% endif %}
                         </tr>
-                    {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

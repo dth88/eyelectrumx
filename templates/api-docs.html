@@ -1,56 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
-    <div style="margin-left: 350px;">
+    <div style="margin-left: 5%;">
         <div style="float:left; margin-right: 120px;">
-            <h2>/api/electrums</h2>
-            <p style="margin-left: 100px;">Get all available electrums status.</p>
+            <pre><h2>              /api/electrums</h2></pre>
+            <p style="margin-left: 175px;">Get all available electrums statuses.</p>
 
-            <h2>/api/adex-mob OR /api/adex-pro</h2>
-            <p style="margin-left: 100px;">Get only adex-mob or adex-pro electrums.</p> 
-            <p style="margin-left: 100px;">Here's json schema for your reference:</p>
+            <pre><h2 style="padding-top:20px;">/api/adex-mob       OR       /api/adex-pro</h2></pre>
+            <p style="margin-left: 160px; padding-top:20px;">Get only adex-mob or adex-pro electrums.</p> 
+            <p style="margin-left: 170px;">Here's json schema for your reference:</p>
 
-            <pre>
-                {
-                    "AXE": [
-                        {
-                            "url": "electrum1.cipig.net:10057",
-                            "contact": {
-                                "email": "cipi(at)komodoplatform.com",
-                                "discord": "cipi#4502"
-                            },
-                            "atomic_dex_mobile": true,
-                            "current_status": {
-                                "alive": true,
-                                "version": "1.14.0",
-                                "uptime": "Apr-23 03:40",
-                                "downtime": 0
-                            }
-                        }
-                    ],
-                    "KMD": [{},{},...],
-                    ...
-                    ...
-                }
-            </pre>
+                <pre>
+    {
+        "KMD": [{"url": "electrum1.cipig.net:10001",
+                "contact": {
+                    "email": "cipi(at)komodoplatform.com",
+                    "discord": "cipi#4502"},
+                "current_status": {
+                    "alive": true,
+                    "version": "1.15.0",
+                    "uptime": "Apr-26 15:55",
+                    "downtime": 0}},
+                {"url": "electrum2.cipig.net:10001",
+                    "contact": {
+                        "email": "cipi(at)komodoplatform.com",
+                        "discord": "cipi#4502"},
+                    "current_status": {
+                        "alive": true,
+                        "version": "1.15.0",
+                        "uptime": "Apr-26 15:55",
+                        "downtime": 0}}],
+        "AXE": [{"url": "electrum1.cipig.net:10057",
+                "contact": {
+                    "email": "cipi(at)komodoplatform.com",
+                    "discord": "cipi#4502"},
+                "current_status": {
+                    "alive": true,
+                    "version": "1.14.0",
+                    "uptime": "Apr-23 03:40",
+                    "downtime": 0}},
+                {"url": "electrum2.cipig.net:10057",
+                    "contact": {..}],
+        "RICK": [{url},{url},...],
+        "RFOX": [{url},{url},...],
+        "LABS": [{url},{url},...],
+    }
+                </pre>
         </div>
 
-        <div style="margin-right: 250px;">
-            <h2 style="padding-top: 23px;">/api/explorers</h2>
-            <p>Get explorers statistics. Here's json schema for your reference:</p>
+        <div style="padding-left: 250px;">
+            <pre><h2 style="padding-left: 200px;">             /api/explorers</h2></pre>
+            <p style="padding-left: 550px;">Get explorers statistics. Here's json schema for your reference:</p>
 
             <pre>
-                {
-                    "KMD": [
-                        {
-                            "url": "https://kmdexplorer.io/",
+            {
+                "KMD": [
+                        {"url": "https://kmdexplorer.io/",
                             "current_status": {
                                 "alive": true,
-                                "uptime": "Apr-23 03:41",
-                                "downtime": 0
-                            }
-                        }
-                    ]
-                }
+                                "uptime": "Apr-26 16:03",
+                                "downtime": 0}},
+                        {"url": "http://kmd.explorer.dexstats.info/",
+                            "current_status": {
+                                "alive": true,
+                                "uptime": "Apr-26 16:03",
+                                "downtime": 0}},
+                        {"url": "https://explorer.komodo.services/",
+                            "current_status": {
+                                "alive": false,
+                                "uptime": 0,
+                                "downtime": "Apr-26 15:56"}}],
+                "BTC":  [
+                        {"url": "https://insight.bitpay.com/",
+                            "current_status": {
+                                "alive": true,
+                                "uptime": "Apr-26 16:03",
+                                "downtime": 0}}],
+                "RICK": [{url},{url},...],
+                "RFOX": [{url},{url},...],
+                "LABS": [{url},{url},...],
+            }
             </pre>
         </div>
     </div>
