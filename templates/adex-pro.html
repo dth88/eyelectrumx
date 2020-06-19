@@ -13,16 +13,16 @@
             </thead>
             <tbody>
             {% for coin, urls in electrum_urls.items() %}
-                {% for url in urls %}
-                    {% if url['atomic_dex_pro'] %}
+                {% if coin in adex-pro %}
+                    {% for url in urls %}
                         <tr>
                             <td class="aligncenter">{{coin}}</td>
                             <td class="aligncenter">{{url['url']}}</td>
                             {% if url['current_status']['alive'] %}
-                                <td style="background:green">Alive!</td>
+                                <td style="background:green; text-align:center;">Alive!</td>
                                 <td>{{ url['current_status']['uptime'] }}</td>
                             {% else %}
-                                <td style="background:red">Dead!</td>
+                                <td style="background:red; text-align:center;">Dead!</td>
                                 <td>{{ url['current_status']['downtime'] }}</td>
                             {% endif %}
 

@@ -13,8 +13,8 @@
             </thead>
             <tbody>
             {% for coin, urls in electrum_urls.items() %}
-                {% for url in urls %}
-                    {% if url['atomic_dex_mobile'] %}
+                {% if coin in adex-mob %}
+                    {% for url in urls %}
                         <tr>
                             <td class="aligncenter">{{coin}}</td>
                             <td class="aligncenter">{{url['url']}}</td>
