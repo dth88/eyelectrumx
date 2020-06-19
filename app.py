@@ -14,6 +14,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = Flask(__name__)
+logging.basicConfig(filename='logs/flask.log',level=logging.DEBUG)
+logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
 @app.before_first_request
@@ -57,20 +59,26 @@ def restore_explorers_from_aws():
 
 @app.route("/")
 def main():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
-    return render_template('electrums.html', electrum_urls=electrum_urls)
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        return render_template('electrums.html', electrum_urls=electrum_urls)
 
 
-@app.route("/atomicdex-mobile")
-def filter_mobile():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
-    return render_template('atomicdex.html', electrum_urls=electrum_urls)
+@app.route("/adex-mob")
+def filter_mob():
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        return render_template('adex-mob.html', electrum_urls=electrum_urls, adexmob=electrums.adex-mob)
+
+
+@app.route("/adex-pro")
+def filter_pro():
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        return render_template('adex-pro.html', electrum_urls=electrum_urls, adexpro=electrums.adex-pro)
 
 
 @app.route("/explorers")
 def explorers():
-    explorers_urls = electrum_lib.restore_explorers_from_backup()
-    return render_template('explorers.html', explorers_urls=explorers_urls)
+    with open('lib/data/backup_explorers.json', 'r') as explorers_urls:
+        return render_template('explorers.html', explorers_urls=explorers_urls)
 
 
 @app.route("/api")
@@ -82,28 +90,34 @@ def api():
 
 @app.route('/api/electrums')
 def get_all_electrums():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
-    return jsonify(electrum_urls)
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        return jsonify(electrum_urls)
 
 
-@app.route('/api/atomicdex-mob')
+@app.route('/api/adex-mob')
 def get_only_atomicdex_mobile_electrums():
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
-    d = {}
-    for coin, urls in electrum_urls.items():
-        if coin in electrums.atomic_dex_mobile:
-            d[coin] = urls
-    return jsonify(d)
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        d = {}
+        for coin, urls in electrum_urls.items():
+            if coin in electrums.adex-mob:
+                d[coin] = urls
+        return jsonify(d)
+
+
+@app.route('/api/adex-pro')
+def get_only_atomicdex_mobile_electrums():
+    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+        d = {}
+        for coin, urls in electrum_urls.items():
+            if coin in electrums.adex-pro:
+                d[coin] = urls
+        return jsonify(d)
 
 
 @app.route('/api/explorers')
 def get_all_explorers():
-    explorers_urls = electrum_lib.restore_explorers_from_backup()
-    return jsonify(explorers_urls)
-
-@app.route('/api/jobs')
-def print_scheduled_jobs():
-    return jsonify(scheduler.print_jobs())
+    with open('lib/data/backup_explorers.json', 'r') as explorers_urls:
+        return jsonify(explorers_urls)
 
 
 
@@ -113,17 +127,17 @@ def print_scheduled_jobs():
 
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
-    electrum_urls = electrum_lib.restore_electrums_from_backup()
-    electrum_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
-    electrum_lib.backup_electrums(electrum_urls)
+    with open('lib/data/backup_electrums.json', 'rw') as electrum_urls:
+        updated_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
+        json.dump(updated_urls, f, indent=4, default=str)
     logging.info('finished background job: electrums update and backup')
 
 
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
-    explorers_urls = electrum_lib.restore_explorers_from_backup()
-    explorers_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
-    electrum_lib.backup_explorers(explorers_urls)
+    with open('lib/data/backup_electrums.json', 'rw') as explorers_urls:
+        updated_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
+        json.dump(updated_urls, f, indent=4, default=str)
     logging.info('finished background job: explorers update and backup')
 
 
@@ -134,9 +148,6 @@ def backup_electrums_data_to_aws():
     object_name = 'backup_electrums.json'
 
     s3_client = boto3.client('s3')
-
-    if object_name is None:
-        object_name = file_name
 
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
@@ -155,9 +166,6 @@ def backup_explorers_data_to_aws():
 
     s3_client = boto3.client('s3')
 
-    if object_name is None:
-        object_name = file_name
-
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
@@ -173,12 +181,11 @@ scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", minutes=
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
 scheduler.start()
-
 atexit.register(lambda: scheduler.shutdown())
 
 
 
 
+
 if __name__ == "__main__":
-    logging.basicConfig(filename='logs/flask.log',level=logging.DEBUG)
     app.run(host="0.0.0.0", port=os.environ['PORT'])
