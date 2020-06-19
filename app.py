@@ -17,7 +17,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 logging.basicConfig(filename='logs/flask.log',level=logging.DEBUG)
-logging.getLogger('apscheduler').setLevel(logging.DEBUG)
+#logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
 @app.before_first_request
