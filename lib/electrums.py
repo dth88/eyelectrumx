@@ -12,36 +12,29 @@ all_tickers = ['AXE',      'BCH',     'BET',    'BOTS',     'BTC',      'BTCH',
 
 
 #official electrums/parity-node repo links
-link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/electrums/"
+link     = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/electrums/"
 eth_link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/ethereum/"
 
 
 #filters
-atomic_dex_mobile = ['KMD',  'BTC',   'BCH',   'DASH',  'DEX',      'DGB',
-                     'LTC',  'ETH',   'USDC',  'MORTY', 'RICK',     'HUSH',
-                     'LABS', 'QTUM',  'RVN',   'ZEC',   'SUPERNET', 'VRSC',
-                     'AXE',  'ZILLA', 'DOGE',  'ECA',   'FTC',      'NAV',
-                     'RFOX', 'OOT',   'VOTE2020']
+adex-mob = ['KMD',  'BTC',   'BCH',   'DASH',  'DEX',      'DGB',
+            'LTC',  'ETH',   'USDC',  'MORTY', 'RICK',     'HUSH',
+            'LABS', 'QTUM',  'RVN',   'ZEC',   'SUPERNET', 'VRSC',
+            'AXE',  'ZILLA', 'DOGE',  'ECA',   'FTC',      'NAV',
+            'RFOX', 'OOT',   'VOTE2020']
                      
 
-atomic_dex_pro =    ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
-                     'LTC',  'ETH',    'USDC',   'MORTY',  'RICK',     'HUSH',
-                     'LABS', 'QTUM',   'RVN',    'ZEC',    'SUPERNET', 'VRSC',
-                     'BET',  'BOTS',   'CRYPTO', 'ILN',    'JUMBLR',   'MCL',
-                     'MGW',  'PANGEA', 'REVS',   'CHIPS']
+adex-pro = ['KMD',  'BTC',    'BCH',    'DASH',   'DEX',      'DGB',
+            'LTC',  'ETH',    'USDC',   'MORTY',  'RICK',     'HUSH',
+            'LABS', 'QTUM',   'RVN',    'ZEC',    'SUPERNET', 'VRSC',
+            'BET',  'BOTS',   'CRYPTO', 'ILN',    'JUMBLR',   'MCL',
+            'MGW',  'PANGEA', 'REVS',   'CHIPS']
 
                              
 #electrum call
 electrum_version_call = {
     "jsonrpc" : "2.0",
     "method": "server.version",
-    "params": [],
-    "id": 0
-}
-
-electrum_ping_call = {
-    "jsonrpc" : "2.0",
-    "method": "server.ping",
     "params": [],
     "id": 0
 }
