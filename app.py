@@ -54,7 +54,8 @@ def restore_explorers_from_aws():
     logging.info('AWS-S3 explorers download: success')
 
 
-
+## TODO: create different json files for adex-mob and adex-pro
+## so it would not lock main electrum json with many requests.
 ### TEMPLATES
 
 @app.route("/")
@@ -125,6 +126,20 @@ def get_all_explorers():
 
 ### BACKGROUND JOBS
 
+
+def measure(func):
+    @wraps(func)
+    def _time_it(*args, **kwargs):
+        start = int(round(time() * 1000))
+        try:
+            return func(*args, **kwargs)
+        finally:
+            end_ = int(round(time() * 1000)) - start
+            logging.info(f"Total execution time for {func.__name__}: {end_ if end_ > 0 else 0} ms")
+    return _time_it
+
+
+@measure
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
     with open('lib/data/backup_electrums.json', 'rw') as electrum_urls:
@@ -133,6 +148,7 @@ def gather_and_backup_electrums():
     logging.info('finished background job: electrums update and backup')
 
 
+@measure
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
     with open('lib/data/backup_electrums.json', 'rw') as explorers_urls:
@@ -176,14 +192,12 @@ def backup_explorers_data_to_aws():
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", minutes=1)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", minutes=1)
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=80)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=30)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
-
-
 
 
 

@@ -59,7 +59,6 @@ def combine_electrums_repo_links(all_tickers, link, eth_link):
 
 
 
-@measure
 def gather_tcp_electrumx_links_into_dict(electrum_links):
     output = {}
     counter = 0
@@ -108,7 +107,7 @@ def http_call_explorer(url):
     return response
 
 
-@measure
+
 def call_explorers_and_update_status_new(explorers_urls):
     output = {}
     for coin, urls in explorers_urls.items():
@@ -148,7 +147,7 @@ def call_explorers_and_update_status_new(explorers_urls):
     return output
 
 
-@measure
+
 def call_explorers_and_update_status(explorers_urls):
     for coin, urls in explorers_urls.items():
         for url in urls:
@@ -220,15 +219,11 @@ def http_call_electrumx(url, content):
     return response
 
 
-@measure
 def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     for coin, urls in electrum_urls.items():
         for url in urls:
-            #for filters implementation
-            if coin in atomic_dex_mobile:
-                url['atomic_dex_mobile'] = True
-            #if url['url'].split(':') has exactly 2 members then
-            #we do simple tcp call with socket
+            #if url['url'].split(':') has exactly 2 members 
+            #then we create a simple tcp call with socket
             try:
                 electrum, port = url['url'].split(':')
                 #if electrum is reachable
