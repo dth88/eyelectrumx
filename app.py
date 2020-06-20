@@ -162,24 +162,24 @@ def measure(func):
 @measure
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         updated_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
-        json.dump(updated_urls, 'lib/data/backup_electrums.json', indent=4, default=str)
+        json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: electrums update and backup')
 
 
 @measure
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
-    with open('lib/data/backup_electrums.json') as explorers_urls:
+    with open('data/backup_electrums.json') as explorers_urls:
         updated_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
-        json.dump(updated_urls, 'lib/data/backup_electrums.json', indent=4, default=str)
+        json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: explorers update and backup')
 
 
 def backup_electrums_data_to_aws():
     logging.info('started background job: backup electrums data to aws')
-    file_name = 'lib/data/backup_electrums.json'
+    file_name = 'data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
@@ -196,7 +196,7 @@ def backup_electrums_data_to_aws():
 
 def backup_explorers_data_to_aws():
     logging.info('started background job: backup explorers data to aws')
-    file_name = 'lib/data/backup_explorers.json'
+    file_name = 'data/backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
@@ -212,8 +212,8 @@ def backup_explorers_data_to_aws():
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=80)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=30)
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
 scheduler.start()
