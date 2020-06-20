@@ -17,6 +17,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 logging.basicConfig(filename='logs/flask.log',level=logging.DEBUG)
+logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
@@ -77,21 +78,21 @@ def main():
 def filter_mob():
     with open('lib/data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
-    return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
+        return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
     with open('lib/data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
-    return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
+        return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
 
 
 @app.route("/explorers")
 def explorers():
     with open('lib/data/backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
-    return render_template('explorers.html', urlz=explorerz)
+        return render_template('explorers.html', urlz=explorerz)
 
 
 @app.route("/api")
@@ -103,15 +104,17 @@ def api():
 
 @app.route('/api/electrums')
 def get_all_electrums():
-    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
-        return jsonify(electrum_urls)
+    with open('lib/data/backup_electrums.json') as electrum_urls:
+        electrumz = json.load(electrum_urls)
+        return jsonify(electrumz)
 
 
 @app.route('/api/adex-mob')
 def get_adex_mob_electrums():
-    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+    with open('lib/data/backup_electrums.json') as electrum_urls:
+        electrumz = json.load(electrum_urls)
         d = {}
-        for coin, urls in electrum_urls.items():
+        for coin, urls in electrumz.items():
             if coin in electrums.adex_mob:
                 d[coin] = urls
         return jsonify(d)
@@ -119,9 +122,10 @@ def get_adex_mob_electrums():
 
 @app.route('/api/adex-pro')
 def get_adex_pro_electrums():
-    with open('lib/data/backup_electrums.json', 'r') as electrum_urls:
+    with open('lib/data/backup_electrums.json') as electrum_urls:
+        electrumz = json.load(electrum_urls)
         d = {}
-        for coin, urls in electrum_urls.items():
+        for coin, urls in electrumz.items():
             if coin in electrums.adex_pro:
                 d[coin] = urls
         return jsonify(d)
@@ -129,8 +133,9 @@ def get_adex_pro_electrums():
 
 @app.route('/api/explorers')
 def get_all_explorers():
-    with open('lib/data/backup_explorers.json', 'r') as explorers_urls:
-        return jsonify(explorers_urls)
+    with open('lib/data/backup_explorers.json') as explorers_urls:
+        explorerz = json.load(explorers_urls)
+        return jsonify(explorerz)
 
 
 
