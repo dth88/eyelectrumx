@@ -163,7 +163,8 @@ def measure(func):
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
     with open('data/backup_electrums.json') as electrum_urls:
-        updated_urls = electrum_lib.call_electrums_and_update_status(electrum_urls, electrums.electrum_version_call, electrums.eth_call)
+        electrumz = json.load(electrum_urls)
+        updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
         json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: electrums update and backup')
 
@@ -171,8 +172,9 @@ def gather_and_backup_electrums():
 @measure
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
-    with open('data/backup_electrums.json') as explorers_urls:
-        updated_urls = electrum_lib.call_explorers_and_update_status(explorers_urls)
+    with open('data/backup_explorers.json') as explorers_urls:
+        explorerz = json.load(explorers_urls)
+        updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
         json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
     logging.info('finished background job: explorers update and backup')
 
