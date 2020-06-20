@@ -162,21 +162,27 @@ def measure(func):
 @measure
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
+    updated_urls = {}
     with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
+    
+    with open('data/backup_electrums.json', 'w') as _:
         json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
-    logging.info('finished background job: electrums update and backup')
+        logging.info('finished background job: electrums update and backup')
 
 
 @measure
 def gather_and_backup_explorers():
     logging.info('started background job: explorers update and backup')
+    updated_urls = {}
     with open('data/backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
+
+    with open('data/backup_explorers.json', 'w') as _:
         json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
-    logging.info('finished background job: explorers update and backup')
+        logging.info('finished background job: explorers update and backup')
 
 
 def backup_electrums_data_to_aws():
@@ -186,12 +192,10 @@ def backup_electrums_data_to_aws():
     object_name = 'backup_electrums.json'
 
     s3_client = boto3.client('s3')
-
     try:
         s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
-        logging.info('AWS-S3 electrums upload: failure')
         return
     logging.info('AWS-S3 electrums upload: success')
 
@@ -203,12 +207,10 @@ def backup_explorers_data_to_aws():
     object_name = 'backup_explorers.json'
 
     s3_client = boto3.client('s3')
-
     try:
         s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
-        logging.info('AWS-S3 explorers upload: failure')
         return
     logging.info('AWS-S3 explorers upload: success')
 
