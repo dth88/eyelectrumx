@@ -31,7 +31,7 @@ def restore_data_from_aws():
 
 def restore_electrums_from_aws():
     s3_client = boto3.client('s3')
-    file_name = 'lib/data/backup_electrums.json'
+    file_name = 'data/backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
     try:
@@ -45,7 +45,7 @@ def restore_electrums_from_aws():
 
 def restore_explorers_from_aws():
     s3_client = boto3.client('s3')
-    file_name = 'lib/data/backup_explorers.json'
+    file_name = 'data/backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
     try:
@@ -63,9 +63,9 @@ def restore_explorers_from_aws():
 
 @app.route("/")
 def main():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
-    return render_template('electrums.html', urlz=electrumz)
+        return render_template('electrums.html', urlz=electrumz)
 
 
     #electrum_urls = open('lib/data/backup_electrums.json')
@@ -76,21 +76,21 @@ def main():
 
 @app.route("/adex-mob")
 def filter_mob():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
 
 
 @app.route("/explorers")
 def explorers():
-    with open('lib/data/backup_explorers.json') as explorers_urls:
+    with open('data/backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         return render_template('explorers.html', urlz=explorerz)
 
@@ -104,14 +104,14 @@ def api():
 
 @app.route('/api/electrums')
 def get_all_electrums():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         return jsonify(electrumz)
 
 
 @app.route('/api/adex-mob')
 def get_adex_mob_electrums():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
@@ -122,7 +122,7 @@ def get_adex_mob_electrums():
 
 @app.route('/api/adex-pro')
 def get_adex_pro_electrums():
-    with open('lib/data/backup_electrums.json') as electrum_urls:
+    with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
@@ -133,7 +133,7 @@ def get_adex_pro_electrums():
 
 @app.route('/api/explorers')
 def get_all_explorers():
-    with open('lib/data/backup_explorers.json') as explorers_urls:
+    with open('data/backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         return jsonify(explorerz)
 
@@ -219,4 +219,4 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=os.environ['PORT'], debug=True)
+    app.run(host="0.0.0.0", port=os.environ['PORT'])
