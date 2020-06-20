@@ -167,8 +167,8 @@ def gather_and_backup_electrums():
         electrumz = json.load(electrum_urls)
         updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
     
-    with open('data/backup_electrums.json', 'w') as _:
-        json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
+    with open('data/backup_electrums.json', 'w') as f:
+        json.dump(updated_urls, f, indent=4, default=str)
         logging.info('finished background job: electrums update and backup')
 
 
@@ -180,8 +180,8 @@ def gather_and_backup_explorers():
         explorerz = json.load(explorers_urls)
         updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
-    with open('data/backup_explorers.json', 'w') as _:
-        json.dump(updated_urls, 'data/backup_electrums.json', indent=4, default=str)
+    with open('data/backup_explorers.json', 'w') as f:
+        json.dump(updated_urls, f, indent=4, default=str)
         logging.info('finished background job: explorers update and backup')
 
 
@@ -218,8 +218,8 @@ def backup_explorers_data_to_aws():
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=100)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
-scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
-scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=10)
+scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=59)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=60)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
