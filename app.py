@@ -178,11 +178,11 @@ def gather_and_backup_electrums():
     with open('data/backup_electrums.json') as electrum_urls:
         electrum_urls = electrum_urls.read()
         electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+        electrumz = json.load(electrum_urls)
         updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('data/backup_electrums.json', 'w') as f:
-        json.dumps(updated_urls, f, indent=4)
+        json.dump(updated_urls, f, indent=4)
         logging.info('finished background job: electrums update and backup')
 
 
