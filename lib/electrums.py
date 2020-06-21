@@ -1,3 +1,10 @@
+## TODO: create automatic parsing of komodoplatform/coins repo to update:
+#  1) all_tickers
+#  2) adex_mob tickers
+#  3) adex_pro tickers
+#  4) explorers urls
+
+
 all_tickers = ['AXE',      'BCH',     'BET',    'BOTS',     'BTC',      'BTCH',  
                'BTG',      'CCL',     'CHIPS',  'COQUI',    'CRYPTO',   'D',        
                'DASH',     'DEX',     'DGB',    'DOGE',     'ECA',      'EMC2',     
