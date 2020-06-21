@@ -234,8 +234,8 @@ scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=59)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=60)
-#scheduler.start()
-#atexit.register(lambda: scheduler.shutdown())
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
 
 
 
