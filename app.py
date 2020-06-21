@@ -11,6 +11,7 @@ from time import time, sleep
 from lib import electrum_lib
 from lib import electrums
 
+from json import JSONDecodeError
 from botocore.exceptions import ClientError
 from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -67,7 +68,9 @@ def restore_explorers_from_aws():
 @app.route("/")
 def main():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         return render_template('electrums.html', urlz=electrumz)
 
 
@@ -80,14 +83,18 @@ def main():
 @app.route("/adex-mob")
 def filter_mob():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
 
 
@@ -108,14 +115,18 @@ def api():
 @app.route('/api/electrums')
 def get_all_electrums():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         return jsonify(electrumz)
 
 
 @app.route('/api/adex-mob')
 def get_adex_mob_electrums():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
             if coin in electrums.adex_mob:
@@ -126,7 +137,9 @@ def get_adex_mob_electrums():
 @app.route('/api/adex-pro')
 def get_adex_pro_electrums():
     with open('data/backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
+        electrum_urls = electrum_urls.read()
+        electrum_urls = electrum_urls[:-1]
+        electrumz = json.loads(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
             if coin in electrums.adex_pro:
@@ -163,10 +176,11 @@ def measure(func):
 def gather_and_backup_electrums():
     logging.info('started background job: electrums update')
     updated_urls = {}
+    
     with open('data/backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
         updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
-    
+
     with open('data/backup_electrums.json', 'w') as f:
         json.dump(updated_urls, f, indent=4, default=str)
         logging.info('finished background job: electrums update and backup')
@@ -220,8 +234,8 @@ scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=59)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=60)
-scheduler.start()
-atexit.register(lambda: scheduler.shutdown())
+#scheduler.start()
+#atexit.register(lambda: scheduler.shutdown())
 
 
 

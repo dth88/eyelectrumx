@@ -1,6 +1,7 @@
 import ssl
 import json
 import socket
+import logging
 import requests
 from functools import wraps
 from time import time, sleep
@@ -239,9 +240,9 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                 #strange index error... trying to debug...
                                 try:
                                     url['current_status']['version'] = r.split()[4][:-2]
-                                except IndexError:
-                                    print("EXCEPTION!!!11  Index Error!")
-                                    print('url: {}, response: {}'.format(url, r))
+                                except IndexError as e:
+                                    logging.error(e)
+                                    logging.error('url: {}, response: {}'.format(url, r))
                             url['current_status']['downtime'] = 0
                             url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
                     except KeyError:
