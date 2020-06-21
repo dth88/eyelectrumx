@@ -19,10 +19,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger('apscheduler').setLevel(logging.DEBUG)
-
-
 
 
 @app.before_first_request
@@ -35,42 +33,54 @@ def restore_data_from_aws():
 
 def restore_electrums_from_aws():
     s3_client = boto3.client('s3')
-    file_name = 'data/backup_electrums.json'
+    file_name = 'backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
+
+    if object_name is None:
+        object_name = file_name
+
     try:
-        s3_client.download_file(bucket, object_name, file_name)
+        response = s3_client.download_file(bucket, object_name, file_name)
+        logging.info(response)
     except ClientError as e:
         logging.error(e)
-        logging.info('AWS-S3 electrums download: failure')
-        return
-    logging.info('AWS-S3 electrums download: success')
+        logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
+        return False
+    logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
+    return True
 
 
 def restore_explorers_from_aws():
     s3_client = boto3.client('s3')
-    file_name = 'data/backup_explorers.json'
+    file_name = 'backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
+
+    if object_name is None:
+        object_name = file_name
+
     try:
-        s3_client.download_file(bucket, object_name, file_name)
+        response = s3_client.download_file(bucket, object_name, file_name)
+        logging.info(response)
     except ClientError as e:
         logging.error(e)
-        logging.info('AWS-S3 explorers download: failure')
-        return
+        logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
+        return False
     logging.info('AWS-S3 explorers download: success')
-
+    return True
 
 ## TODO: create different json files for adex-mob and adex-pro
 ## so it would not lock main electrum json with many requests.
+
 ### TEMPLATES
 
 @app.route("/")
 def main():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         return render_template('electrums.html', urlz=electrumz)
 
 
@@ -82,25 +92,25 @@ def main():
 
 @app.route("/adex-mob")
 def filter_mob():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
 
 
 @app.route("/explorers")
 def explorers():
-    with open('data/backup_explorers.json') as explorers_urls:
+    with open('backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         return render_template('explorers.html', urlz=explorerz)
 
@@ -114,19 +124,19 @@ def api():
 
 @app.route('/api/electrums')
 def get_all_electrums():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         return jsonify(electrumz)
 
 
 @app.route('/api/adex-mob')
 def get_adex_mob_electrums():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
             if coin in electrums.adex_mob:
@@ -136,10 +146,10 @@ def get_adex_mob_electrums():
 
 @app.route('/api/adex-pro')
 def get_adex_pro_electrums():
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         d = {}
         for coin, urls in electrumz.items():
             if coin in electrums.adex_pro:
@@ -149,11 +159,9 @@ def get_adex_pro_electrums():
 
 @app.route('/api/explorers')
 def get_all_explorers():
-    with open('data/backup_explorers.json') as explorers_urls:
+    with open('backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         return jsonify(explorerz)
-
-
 
 
 
@@ -174,63 +182,80 @@ def measure(func):
 
 @measure
 def gather_and_backup_electrums():
-    logging.info('started background job: electrums update')
-    with open('data/backup_electrums.json') as electrum_urls:
-        electrum_urls = electrum_urls.read()
-        electrum_urls = electrum_urls[:-1]
-        electrumz = json.loads(electrum_urls)
+    logging.info('STARTED background job: ELECTRUMS UPDATE')
+    with open('backup_electrums.json') as electrum_urls:
+        #electrum_urls = electrum_urls.read()
+        #electrum_urls = electrum_urls[:-1]
+        electrumz = json.load(electrum_urls)
         updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
-    with open('data/backup_electrums.json', 'w') as f:
+    with open('backup_electrums.json', 'w') as f:
         json.dump(updated_urls, f, indent=4)
-        logging.info('finished background job: electrums update and backup')
+        logging.info('background job: ELECTRUMS UPDATE FINISHED')
 
 
 @measure
 def gather_and_backup_explorers():
-    logging.info('started background job: explorers update and backup')
-    with open('data/backup_explorers.json') as explorers_urls:
+    logging.info('STARTED background job: EXPLORERS UPDATE')
+    with open('backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
         updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
-    with open('data/backup_explorers.json', 'w') as f:
-        json.dump(updated_urls, f, indent=4, default=str)
-        logging.info('finished background job: explorers update and backup')
+    with open('backup_explorers.json', 'w') as f:
+        json.dump(updated_urls, f, indent=4)
+        logging.info('background job: EXPLORERS UPDATE FINISHED')
+
+
+
+
+
+#### AWS S3 UPLOAD
 
 
 def backup_electrums_data_to_aws():
-    logging.info('started background job: backup electrums data to aws')
-    file_name = 'data/backup_electrums.json'
+    logging.info('STARTED background job: UPLOAD ELECTRUMS data to AWS')
+    file_name = 'backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
     s3_client = boto3.client('s3')
     try:
-        s3_client.upload_file(file_name, bucket, object_name)
+        response = s3_client.upload_file(file_name, bucket, object_name)
+        logging.info(response)
     except ClientError as e:
         logging.error(e)
-        return
-    logging.info('AWS-S3 electrums upload: success')
+        logging.error('AWS-S3 ELECTRUMS UPLOAD: FAILURE')
+        return False
+    logging.info('AWS-S3 ELECTRUMS UPLOAD: SUCCESS')
+    return True
+
+
 
 
 def backup_explorers_data_to_aws():
-    logging.info('started background job: backup explorers data to aws')
-    file_name = 'data/backup_explorers.json'
+    logging.info('STARTED background job: UPLOAD EXPLORERS data to AWS')
+    file_name = 'backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
     s3_client = boto3.client('s3')
     try:
-        s3_client.upload_file(file_name, bucket, object_name)
+        response = s3_client.upload_file(file_name, bucket, object_name)
+        logging.info(response)
     except ClientError as e:
         logging.error(e)
-        return
-    logging.info('AWS-S3 explorers upload: success')
+        logging.error('AWS-S3 EXPLORERS UPLOAD: FAILURE')
+        return False
+    logging.info('AWS-S3 EXPLORERS UPLOAD: SUCCESS')
+    return True
+
+
+
 
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=200)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=5)
 scheduler.start()
