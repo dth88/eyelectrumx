@@ -120,6 +120,19 @@ def api():
     return render_template('api-docs.html')
 
 
+
+
+### Error handling
+
+#@app.errorhandler(500)
+#def rollback_electrums():
+#    logging
+#    restore_electrums_from_aws()
+
+
+
+
+
 ### ENDPOINTS
 
 @app.route('/api/electrums')
@@ -183,11 +196,17 @@ def measure(func):
 @measure
 def gather_and_backup_electrums():
     logging.info('STARTED background job: ELECTRUMS UPDATE')
-    with open('backup_electrums.json') as electrum_urls:
-        #electrum_urls = electrum_urls.read()
-        #electrum_urls = electrum_urls[:-1]
-        electrumz = json.load(electrum_urls)
-    
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.debug("removing last curly brace and trying again")
+        with open('backup_electrums.json') as electrum_urls:
+            electrum_urls = electrum_urls.read()
+            electrum_urls = electrum_urls[:-1]
+            electrumz = json.loads(electrum_urls)
+            
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('backup_electrums.json', 'w') as f:
