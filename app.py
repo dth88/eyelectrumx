@@ -187,7 +187,8 @@ def gather_and_backup_electrums():
         #electrum_urls = electrum_urls.read()
         #electrum_urls = electrum_urls[:-1]
         electrumz = json.load(electrum_urls)
-        updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
+    
+    updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('backup_electrums.json', 'w') as f:
         json.dump(updated_urls, f, indent=4)
@@ -199,7 +200,8 @@ def gather_and_backup_explorers():
     logging.info('STARTED background job: EXPLORERS UPDATE')
     with open('backup_explorers.json') as explorers_urls:
         explorerz = json.load(explorers_urls)
-        updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
+    
+    updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
     with open('backup_explorers.json', 'w') as f:
         json.dump(updated_urls, f, indent=4)
