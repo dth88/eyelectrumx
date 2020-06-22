@@ -197,9 +197,11 @@ def gather_and_backup_electrums():
         with open('backup_electrums.json') as electrum_urls:
             electrumz = electrum_urls.read()
         last_characters = electrumz[-3:]
-        if last_characters != "}]}":
+        logging.debug(last_characters)
+        if last_characters == "]}}":
             logging.debug("removing last curly brace and trying again")
             electrumz = electrumz[:-1]
+            logging.debug(electrumz)
             electrumz = json.load(electrumz)
         else:
             logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
