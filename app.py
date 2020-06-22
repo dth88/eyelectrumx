@@ -202,7 +202,7 @@ def gather_and_backup_electrums():
             logging.debug("removing last curly brace and trying again")
             electrumz = electrumz[:-1]
             logging.debug(electrumz)
-            electrumz = json.load(electrumz)
+            electrumz = json.loads(electrumz)
         else:
             logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
             restore_electrums_from_aws()
