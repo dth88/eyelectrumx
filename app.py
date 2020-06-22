@@ -147,6 +147,17 @@ def get_all_explorers():
 
 
 
+### Error handling
+@app.errorhandler(500)
+def rollback_electrums():
+    logging.error("500 again! Rolling back from AWS")
+    restore_electrums_from_aws()
+
+
+
+
+
+
 ### BACKGROUND JOBS FOR SCHEDULER
 
 def measure(func):
@@ -173,19 +184,33 @@ def gather_and_backup_electrums():
     # app[web.1]: json.decoder.JSONDecodeError: Extra data: line 2578 column 2 (char 74668)
     # i was able to fix it only with removing this last curly brace basically "by hands" 
     # if Internal Server Error 500 happens, it is most likely because of this bug.
-    # The "funniest" thing that it only happens in HEROKU environment, cant reproduce anywhere else... 
+    # The "funniest" thing that it only happens in HEROKU environment, cant reproduce anywhere else...
+    #
+    # So... another case came in json.decoder.JSONDecodeError: 
+    # Invalid control character at: line 2267 column 57 (char 65576)
+    # where somehow this --> ("email": "0x03-ctrlc(at)protonmail.com",) turned into this entry ---> ("email": "0x03-ctrlc(at)protonmail.com,,)
+    # what the heck is going on... seems like i need a real db for all that...
+    # 
+    # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder with a lot of escaping slashes and new lines.
     except JSONDecodeError as e:
         logging.error(e)
-        logging.debug("removing last curly brace and trying again")
         with open('backup_electrums.json') as electrum_urls:
             electrumz = electrum_urls.read()
-        electrumz = electrumz[:-1]
-        electrumz = json.loads(electrumz)
+        last_characters = electrumz[-3:]
+        if last_characters != "}]}":
+            logging.debug("removing last curly brace and trying again")
+            electrumz = electrumz[:-1]
+            electrumz = json.load(electrumz)
+        else:
+            logging.debug("having no idea what to do with that decode error, just gonna rollback to aws backup.")
+            restore_electrums_from_aws()
+            with open('backup_electrums.json') as electrum_urls:
+                electrumz = json.load(electrum_urls)
 
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('backup_electrums.json', 'w') as f:
-        json.dump(updated_urls, f, indent=4)
+        json.dump(updated_urls, f)
     logging.info('background job: ELECTRUMS UPDATE FINISHED')
 
 
@@ -198,7 +223,7 @@ def gather_and_backup_explorers():
     updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
     with open('backup_explorers.json', 'w') as f:
-        json.dump(updated_urls, f, indent=4)
+        json.dump(updated_urls, f)
         logging.info('background job: EXPLORERS UPDATE FINISHED')
 
 
@@ -244,19 +269,11 @@ def backup_explorers_data_to_aws():
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
-scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=30)
-scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=30)
+scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=5)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ['PORT'])
-
-
-### Error handling
-
-#@app.errorhandler(500)
-#def rollback_electrums():
-#    logging
-#    restore_electrums_from_aws()

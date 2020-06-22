@@ -315,8 +315,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
 #utilities
 
 def backup_electrums(electrum_urls):
-    with open('lib/data/backup_electrums.json', 'w') as f:
-        json.dump(electrum_urls, f, indent=4, default=str)
+    with open('data/backup_electrums.json', 'w') as f:
+        json.dump(electrum_urls, f)
 
 
 def backup_explorers(explorers_urls):
@@ -330,21 +330,18 @@ def backup_electrums_links(links):
 
 
 def restore_electrums_links():
-    backup = {}
     with open('lib/data/backup_electrum_links.json', 'r') as f:
         backup = json.load(f)
     return backup
 
 
 def restore_explorers_from_backup():
-    backup = {}
     with open('lib/data/backup_explorers.json', 'r') as f:
         backup = json.load(f)
     return backup
 
 
 def restore_electrums_from_backup():
-    backup = {}
     with open('lib/data/backup_electrums.json', 'r') as f:
         backup = json.load(f)
     return backup
