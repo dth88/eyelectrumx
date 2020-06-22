@@ -31,10 +31,10 @@ jobs:
     - name: Build and push
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:push -a rocky-cove-80142 web
+      run: heroku container:push -a eyelectrums web
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a rocky-cove-80142 web
+      run: heroku container:release -a eyelectrums web
 
