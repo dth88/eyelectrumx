@@ -148,10 +148,10 @@ def get_all_explorers():
 
 
 ### Error handling
-@app.errorhandler(500)
-def rollback_electrums():
-    logging.error("500 again! Rolling back from AWS")
-    restore_electrums_from_aws()
+#@app.errorhandler(500)
+#def rollback_electrums():
+#    logging.error("500 again! Rolling back from AWS")
+#    restore_electrums_from_aws()
 
 
 
@@ -202,7 +202,7 @@ def gather_and_backup_electrums():
             electrumz = electrumz[:-1]
             electrumz = json.load(electrumz)
         else:
-            logging.debug("having no idea what to do with that decode error, just gonna rollback to aws backup.")
+            logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
             restore_electrums_from_aws()
             with open('backup_electrums.json') as electrum_urls:
                 electrumz = json.load(electrum_urls)
@@ -217,9 +217,16 @@ def gather_and_backup_electrums():
 @measure
 def gather_and_backup_explorers():
     logging.info('STARTED background job: EXPLORERS UPDATE')
-    with open('backup_explorers.json') as explorers_urls:
-        explorerz = json.load(explorers_urls)
-    
+    try:
+        with open('backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
+        restore_explorers_from_aws()
+        with open('backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
+
     updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
     with open('backup_explorers.json', 'w') as f:
@@ -269,8 +276,8 @@ def backup_explorers_data_to_aws():
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
-scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=5)
-scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=5)
+scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=15)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=15)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
