@@ -1,3 +1,3 @@
 # Komodo electrumX server monitoring portal
 
-https://eyelectrums.herokuapp.com/
+https://eyelectrumx.herokuapp.com/
