@@ -5,12 +5,12 @@ import boto3
 import atexit
 import logging
 import requests
+
+from lib import electrums
+from lib import electrum_lib
+
 from functools import wraps
 from time import time, sleep
-
-from lib import electrum_lib
-from lib import electrums
-
 from json import JSONDecodeError
 from botocore.exceptions import ClientError
 from flask import Flask, render_template, jsonify
@@ -186,12 +186,13 @@ def gather_and_backup_electrums():
     # if Internal Server Error 500 happens, it is most likely because of this bug.
     # The "funniest" thing that it only happens in HEROKU environment, cant reproduce anywhere else...
     #
-    # So... another case came in json.decoder.JSONDecodeError: 
+    # So... another case came in json.decoder.JSONDecodeError:
     # Invalid control character at: line 2267 column 57 (char 65576)
-    # where somehow this --> ("email": "0x03-ctrlc(at)protonmail.com",) turned into this entry ---> ("email": "0x03-ctrlc(at)protonmail.com,,)
+    # where somehow this --> ("email": "0x03-ctrlc(at)protonmail.com",) turned into this entry ---> 
+    # ("email": "0x03-ctrlc(at)protonmail.com,,)
     # what the heck is going on... seems like i need a real db for all that...
     # 
-    # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder with a lot of escaping slashes and new lines.
+    # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder # # with a lot of escaping slashes and new lines.
     except JSONDecodeError as e:
         logging.error(e)
         with open('backup_electrums.json') as electrum_urls:
@@ -204,7 +205,7 @@ def gather_and_backup_electrums():
             logging.debug(electrumz)
             electrumz = json.loads(electrumz)
         else:
-            logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
+            logging.debug("no idea what to do with this decode error, just gonna rollback to aws backup.")
             restore_electrums_from_aws()
             with open('backup_electrums.json') as electrum_urls:
                 electrumz = json.load(electrum_urls)
@@ -278,8 +279,8 @@ def backup_explorers_data_to_aws():
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
 scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
-scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=15)
-scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=15)
+scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=30)
+scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=30)
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 

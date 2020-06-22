@@ -1,4 +1,5 @@
-## TODO: create automatic parsing of komodoplatform/coins repo to update:
+## TODO: create parser for komodoplatform/coins repo to automatically 
+#  update-rebuild app on coin/electrum/explorer change:
 #  1) all_tickers
 #  2) adex_mob tickers
 #  3) adex_pro tickers

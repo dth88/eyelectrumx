@@ -13,7 +13,7 @@ from electrums import (all_tickers, link, electrum_version_call, eth_call, eth_l
 
 
 def stop_email_parsing(electrum_urls):
-    for coin, urls in electrum_urls.items():
+    for _, urls in electrum_urls.items():
         for url in urls:
             email = url['contact'].get('email')
             if email:
@@ -149,7 +149,7 @@ def call_explorers_and_update_status_new(explorers_urls):
 
 
 def call_explorers_and_update_status(explorers_urls):
-    for coin, urls in explorers_urls.items():
+    for _, urls in explorers_urls.items():
         for url in urls:
             try:
                 _ = http_call_explorer(url['url'])
@@ -316,7 +316,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
 
 def backup_electrums(electrum_urls):
     with open('data/backup_electrums.json', 'w') as f:
-        json.dump(electrum_urls, f)
+        json.dump(electrum_urls, f, indent=4, default=str)
 
 
 def backup_explorers(explorers_urls):
