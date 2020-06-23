@@ -205,9 +205,8 @@ def gather_and_backup_electrums():
             electrumz = json.dumps(electrumz)
             logging.debug(electrumz)
             electrumz = json.loads(electrumz)
-        else:
-            logging.debug("no idea what to do with this decode error, just gonna rollback to aws backup.")
-            restore_electrums_from_aws()
+            with open('backup_electrums.json', 'w') as f:
+                json.dump(electrumz, f)
             with open('backup_electrums.json') as electrum_urls:
                 electrumz = json.load(electrum_urls)
 
