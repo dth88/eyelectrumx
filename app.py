@@ -202,6 +202,7 @@ def gather_and_backup_electrums():
         if last_characters == "]}}":
             logging.debug("removing last curly brace and trying again")
             electrumz = electrumz[:-1]
+            electrumz = json.dumps(electrumz)
             logging.debug(electrumz)
             electrumz = json.loads(electrumz)
         else:
