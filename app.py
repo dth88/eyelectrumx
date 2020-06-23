@@ -205,6 +205,8 @@ def gather_and_backup_electrums():
             electrumz = json.dumps(electrumz)
             logging.debug(electrumz)
             electrumz = json.loads(electrumz)
+            logging.debug(electrumz)
+            logging.debug(type(electrumz))
             with open('backup_electrums.json', 'w') as f:
                 json.dump(electrumz, f)
             with open('backup_electrums.json') as electrum_urls:
