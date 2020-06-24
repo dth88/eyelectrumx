@@ -188,9 +188,13 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         if url['current_status']:
                             url['current_status']['alive'] = "true"
                             #qtum has different response from other electrums...
+                            try:
+                                is_fulcrum = r.split()[0][-7:]
+                            except:
+                                pass
                             if 'QTUM' in coin:
                                 url['current_status']['version'] = r.split()[5][:-2]
-                            elif 'Fulcrum' in r.split()[0][-7:]:
+                            elif 'Fulcrum' in is_fulcrum:
                                 url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                             else:
                                 #strange index error... trying to debug...
