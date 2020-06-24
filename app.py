@@ -209,7 +209,7 @@ def gather_and_backup_electrums():
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('backup_electrums.json', 'w') as f:
-        json.dump(updated_urls, f)
+        json.dump(updated_urls, f, default=str)
     logging.info('background job: ELECTRUMS UPDATE FINISHED')
 
 
