@@ -20,51 +20,43 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 class FlaskApp(Flask):
     def __init__(self, *args, **kwargs):
-        super(FlaskApp, self).__init__(*args, **kwargs)
         self._activate_on_startup()
+        super(FlaskApp, self).__init__(*args, **kwargs)
+
 
     def _activate_on_startup(self):
-        def run_job():
+        def restore_data_from_aws():
             logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
             logging.info('_activate_on_startup execution started')
-            restore_electrums_from_aws()
-            restore_explorers_from_aws()
-            logging.info('_activate_on_startup execution finished')
+            #restore_electrums
+            file_name = 'backup_electrums.json'
+            bucket = 'rocky-cove-80142'
+            object_name = 'backup_electrums.json'
 
-            def restore_electrums_from_aws():
-                file_name = 'backup_electrums.json'
-                bucket = 'rocky-cove-80142'
-                object_name = 'backup_electrums.json'
-
-                s3_client = boto3.client('s3')
-                try:
-                    response = s3_client.download_file(bucket, object_name, file_name)
-                    logging.info(response)
-                except ClientError as e:
-                    logging.error(e)
-                    logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
-                    return False
-                logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
-                return True
+            s3_client = boto3.client('s3')
+            try:
+                response = s3_client.download_file(bucket, object_name, file_name)
+                logging.info(response)
+            except ClientError as e:
+                logging.error(e)
+                logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
+            logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
             
+            file_name = 'backup_explorers.json'
+            bucket = 'rocky-cove-80142'
+            object_name = 'backup_explorers.json'
+            try:
+                response = s3_client.download_file(bucket, object_name, file_name)
+                logging.info(response)
+            except ClientError as e:
+                logging.error(e)
+                logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
+            logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
 
-            def restore_explorers_from_aws():
-                file_name = 'backup_explorers.json'
-                bucket = 'rocky-cove-80142'
-                object_name = 'backup_explorers.json'
+            logging.info('_activate_on_startup execution finished')
+                
 
-                s3_client = boto3.client('s3')
-                try:
-                    response = s3_client.download_file(bucket, object_name, file_name)
-                    logging.info(response)
-                except ClientError as e:
-                    logging.error(e)
-                    logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
-                    return False
-                logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
-                return True
-
-        t1 = threading.Thread(target=run_job)
+        t1 = threading.Thread(target=restore_data_from_aws)
         t1.start()
 
 app = FlaskApp(__name__)
