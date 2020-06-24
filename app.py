@@ -23,6 +23,7 @@ class FlaskApp(Flask):
         self._activate_on_startup()
 
     def _activate_on_startup(self):
+        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
         logging.info('_activate_on_startup execution started')
         restore_electrums_from_aws()
         restore_explorers_from_aws()
@@ -65,7 +66,7 @@ class FlaskApp(Flask):
 
 app = FlaskApp(__name__)
 
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+
 #logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
