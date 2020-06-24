@@ -74,7 +74,7 @@ def restore_explorers_from_aws():
 def main():
     with open('backup_electrums.json') as electrum_urls:
         electrumz = json.load(electrum_urls)
-    return render_template('electrums.html', urlz=electrumz)
+    return render_template('index.html', urlz=electrumz)
 
 
 @app.route("/adex-mob")
