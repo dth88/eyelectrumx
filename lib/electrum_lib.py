@@ -239,7 +239,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                 #strange index error... trying to debug...
                                 #response: {"id":0,"jsonrpc":"2.0","result":["Fulcrum 1.2.0","1.4"]
                                 try:
-                                    url['current_status']['version'] = r.split()[4][:-2]
+                                    url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                                 except IndexError as e:
                                     logging.error(e)
                                     logging.error('url: {}, response: {}'.format(url, r))
@@ -254,7 +254,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         else:
                             #strange index error... trying to debug...
                             try:
-                                url['current_status']['version'] = r.split()[4][:-2]
+                                url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                             except IndexError:
                                 print("EXCEPTION!!!11  Index Error!")
                                 print('url: {}, response: {}'.format(url, r))
