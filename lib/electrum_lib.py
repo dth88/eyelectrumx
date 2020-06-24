@@ -190,8 +190,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             #qtum has different response from other electrums...
                             try:
                                 is_fulcrum = r.split()[0][-7:]
-                            except:
-                                pass
+                            except IndexError:
+                                is_fulcrum = 'not really'
                             if 'QTUM' in coin:
                                 url['current_status']['version'] = r.split()[5][:-2]
                             elif 'Fulcrum' in is_fulcrum:
@@ -212,8 +212,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         url['current_status']['alive'] = "true"
                         try:
                             is_fulcrum = r.split()[0][-7:]
-                        except:
-                            pass
+                        except IndexError:
+                            is_fulcrum = 'not really'
                         if 'QTUM' in coin:
                             url['current_status']['version'] = r.split()[5][:-2]
                         elif 'Fulcrum' in is_fulcrum:
@@ -223,8 +223,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             try:
                                 url['current_status']['version'] = r.split()[4][:-2]
                             except IndexError:
-                                print("EXCEPTION!!!11  Index Error!")
-                                print('url: {}, response: {}'.format(url, r))
+                                logging.debug("EXCEPTION!!!11  Index Error!")
+                                logging.debug('url: {}, response: {}'.format(url, r))
                         url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
                         url['current_status']['downtime'] = "0"
                 #if electrum is unreachable
@@ -359,4 +359,6 @@ def pretty_print(electrum_urls):
     #de = call_explorers_and_update_status(exp_local_links)
     #backup_explorers(de)
     #pretty_print(d)
-    
+    #0-date bug
+    #"HODLC":[{"contact":{},"current_status":{"alive":"true","downtime":"0","uptime":"Jun-24 17:07","version":"1.14.0"},"url":"hodl2.amit.systems:17989"},
+    #         {"contact":{},"current_status":{"alive":"true","downtime":"0","uptime":"0","version":"1.14.0"},"url":"hodl.amit.systems:17989"}],

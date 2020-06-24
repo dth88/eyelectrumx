@@ -23,12 +23,12 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
-@app.before_first_request
+
 def restore_data_from_aws():
-    logging.info('@before_first_request execution started')
+    logging.info('@before_startup execution started')
     restore_electrums_from_aws()
     restore_explorers_from_aws()
-    logging.info('@before_first_request execution finished')
+    logging.info('@before_startup execution finished')
 
 
 def restore_electrums_from_aws():
@@ -286,4 +286,5 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
+    restore_data_from_aws()
     app.run(host="0.0.0.0", port=os.environ['PORT'])
