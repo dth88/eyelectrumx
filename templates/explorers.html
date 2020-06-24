@@ -16,7 +16,7 @@
             <tr>
                 <td style="text-align: center;">{{coin}}</td>
                 <td style="text-align: center;">{{url['url']}}</td>
-                {% if url['current_status']['alive'] %}
+                {% if url['current_status']['alive'] == "true" %}
                     <td style="background:green">Alive!</td>
                     <td>{{ url['current_status']['uptime'] }}</td>
                 {% else %}

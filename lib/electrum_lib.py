@@ -101,84 +101,39 @@ def gather_tcp_electrumx_links_into_dict(electrum_links):
     return output, counter
 
 
-def http_call_explorer(url):
-    response = requests.get(url)
-    return response
-
-
-
-def call_explorers_and_update_status_new(explorers_urls):
-    output = {}
-    for coin, urls in explorers_urls.items():
-        updated_urls = []
-        for url in urls:
-            new_url = {'url': url}
-            try:
-                _ = http_call_explorer(url)
-                try:
-                    #update if status exists
-                    if new_url['current_status']:
-                        new_url['current_status']['alive'] = True
-                        new_url['current_status']['downtime'] = 0
-                        new_url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
-                except KeyError:
-                    #create if there's no status dict
-                    new_url['current_status'] = {}
-                    new_url['current_status']['alive'] = True
-                    new_url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
-                    new_url['current_status']['downtime'] = 0
-            #if explorer is unreachable
-            except RequestException:
-                try:
-                    #update if status exists
-                    if new_url['current_status']:
-                        new_url['current_status']['alive'] = False
-                        new_url['current_status']['uptime'] = 0
-                        new_url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['downtime'] else url['current_status']['downtime']
-                except KeyError:
-                    #create if there's no status dict
-                    new_url['current_status'] = {}
-                    new_url['current_status']['alive'] = False
-                    new_url['current_status']['uptime'] = 0
-                    new_url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M")
-            updated_urls.append(new_url)
-        output[coin] = updated_urls
-    return output
-
-
-
 def call_explorers_and_update_status(explorers_urls):
     for _, urls in explorers_urls.items():
         for url in urls:
             try:
-                _ = http_call_explorer(url['url'])
+                requests.get(url['url'])
                 try:
                     #update if status exists
                     if url['current_status']:
-                        url['current_status']['alive'] = True
-                        url['current_status']['downtime'] = 0
+                        url['current_status']['alive'] = "true"
+                        url['current_status']['downtime'] = "0"
                         url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] else url['current_status']['uptime']
                 except KeyError:
                     #create if there's no status dict
                     url['current_status'] = {}
-                    url['current_status']['alive'] = True
+                    url['current_status']['alive'] = "true"
                     url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
-                    url['current_status']['downtime'] = 0
+                    url['current_status']['downtime'] = "0"
             #if explorer is unreachable
             except RequestException:
                 try:
                     #update if status exists
                     if url['current_status']:
-                        url['current_status']['alive'] = False
-                        url['current_status']['uptime'] = 0
+                        url['current_status']['alive'] = "false"
+                        url['current_status']['uptime'] = "0"
                         url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['downtime'] else url['current_status']['downtime']
                 except KeyError:
                     #create if there's no status dict
                     url['current_status'] = {}
-                    url['current_status']['alive'] = False
-                    url['current_status']['uptime'] = 0
+                    url['current_status']['alive'] = "false"
+                    url['current_status']['uptime'] = "0"
                     url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M")
     return explorers_urls
+
 
 
 # TODO: figure out ssl...
@@ -235,11 +190,14 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             #qtum has different response from other electrums...
                             if 'QTUM' in coin:
                                 url['current_status']['version'] = r.split()[5][:-2]
+                            
+                            elif:
+                                url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                             else:
                                 #strange index error... trying to debug...
                                 #response: {"id":0,"jsonrpc":"2.0","result":["Fulcrum 1.2.0","1.4"]
                                 try:
-                                    url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
+                                    url['current_status']['version'] = r.split()[4][:-2]
                                 except IndexError as e:
                                     logging.error(e)
                                     logging.error('url: {}, response: {}'.format(url, r))
@@ -251,10 +209,12 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         url['current_status']['alive'] = "true"
                         if 'QTUM' in coin:
                             url['current_status']['version'] = r.split()[5][:-2]
+                        elif 'Fulcrum' in r.split()[0][-7:]:
+                            url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                         else:
                             #strange index error... trying to debug...
                             try:
-                                url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
+                                url['current_status']['version'] = r.split()[4][:-2]
                             except IndexError:
                                 print("EXCEPTION!!!11  Index Error!")
                                 print('url: {}, response: {}'.format(url, r))

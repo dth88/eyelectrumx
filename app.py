@@ -177,7 +177,7 @@ def gather_and_backup_electrums():
     logging.info('STARTED background job: ELECTRUMS UPDATE')
     try:
         with open('backup_electrums.json') as electrum_urls:
-            electrumz = json.load(electrum_urls, parse_int=str)
+            electrumz = json.load(electrum_urls)
     # There's an AUTOMAGICAL bug here which happens randomly that I cant get my head around. 
     # It is concatenating one additional curly brace at the end of 'backup_electrums.json'
     # and making it unable to load as json file(raise JSONDecodeError("Extra data", s, end)
@@ -195,21 +195,25 @@ def gather_and_backup_electrums():
     # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder # # with a lot of escaping slashes and new lines.
     except JSONDecodeError as e:
         logging.error(e)
+        logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
+        restore_electrums_from_aws()
         with open('backup_electrums.json') as electrum_urls:
-            electrumz = electrum_urls.read()
-        last_characters = electrumz[-3:]
-        logging.debug(last_characters)
-        if last_characters == "]}}":
-            logging.debug("removing last curly brace and trying again")
-            electrumz = electrumz[:-1]
-            electrumz = json.loads(electrumz, parse_int=str)
-            logging.debug(type(electrumz))
-            logging.debug(electrumz)
+            electrumz = json.load(electrum_urls)
+        #with open('backup_electrums.json') as electrum_urls:
+        #    electrumz = electrum_urls.read()
+        #last_characters = electrumz[-3:]
+        #logging.debug(last_characters)
+        #if last_characters == "]}}":
+        #    logging.debug("removing last curly brace and trying again")
+        #    electrumz = electrumz[:-1]
+        #    electrumz = json.loads(electrumz, parse_int=str)
+        #    logging.debug(type(electrumz))
+        #    logging.debug(electrumz)
 
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
     with open('backup_electrums.json', 'w') as f:
-        json.dump(updated_urls, f, default=str)
+        json.dump(updated_urls, f)
     logging.info('background job: ELECTRUMS UPDATE FINISHED')
 
 
