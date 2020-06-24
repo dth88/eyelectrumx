@@ -167,11 +167,6 @@ def tcp_call_electrumx(url, port, content):
     s.close()
     return response
 
-
-def http_call_electrumx(url, content):
-    response = requests.post(url, json=content).json()
-    return response
-
 @measure
 def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     for coin, urls in electrum_urls.items():
@@ -205,7 +200,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                     logging.error(e)
                                     logging.error('url: {}, response: {}'.format(url, r))
                             url['current_status']['downtime'] = "0"
-                            url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not int(url['current_status']['uptime']) else url['current_status']['uptime']
+                            url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] or url['current_status']['uptime'] == "0" else url['current_status']['uptime']
                     except KeyError:
                         #create if there's no status dict
                         url['current_status'] = {}
@@ -234,7 +229,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         if url['current_status']:
                             url['current_status']['alive'] = "false"
                             url['current_status']['uptime'] = "0"
-                            url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not int(url['current_status']['downtime']) else url['current_status']['downtime']
+                            url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] or url['current_status']['uptime'] == "0" else url['current_status']['downtime']
                     except KeyError:
                         #create if there's no status dict
                         url['current_status'] = {}
@@ -247,13 +242,13 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
             #in our case these urls belong only to eth parity nodes
             except ValueError:
                 try:
-                    r = http_call_electrumx(url['url'], eth_call)
+                    r = requests.post(url['url'], json=eth_call).json()
                     #if parity node is reachable
                     try:
                         #update if status exists
                         if url['current_status']:
                             url['current_status']['alive'] = "true"
-                            url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not int(url['current_status']['uptime']) else url['current_status']['uptime']
+                            url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] or url['current_status']['uptime'] == "0" else url['current_status']['uptime']
                             url['current_status']['downtime'] = "0"
                     except KeyError:
                         #creation for the first time
@@ -268,7 +263,7 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                         if url['current_status']:
                             url['current_status']['alive'] = "false"
                             url['current_status']['uptime'] = "0"
-                            url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not int(url['current_status']['downtime']) else url['current_status']['downtime']
+                            url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M") if not url['current_status']['uptime'] or url['current_status']['uptime'] == "0" else url['current_status']['downtime']
                     except KeyError:
                         #first time creation for unreachable parity node
                         url['current_status'] = {}
