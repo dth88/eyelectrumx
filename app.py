@@ -17,52 +17,57 @@ from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
-app = Flask(__name__)
+class FlaskApp(Flask):
+    def __init__(self, *args, **kwargs):
+        super(FlaskApp, self).__init__(*args, **kwargs)
+        self._activate_on_startup()
+
+    def _activate_on_startup(self):
+        logging.info('_activate_on_startup execution started')
+        restore_electrums_from_aws()
+        restore_explorers_from_aws()
+        logging.info('_activate_on_startup execution finished')
+
+        def restore_electrums_from_aws():
+            file_name = 'backup_electrums.json'
+            bucket = 'rocky-cove-80142'
+            object_name = 'backup_electrums.json'
+
+            s3_client = boto3.client('s3')
+            try:
+                response = s3_client.download_file(bucket, object_name, file_name)
+                logging.info(response)
+            except ClientError as e:
+                logging.error(e)
+                logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
+                return False
+            logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
+            return True
+        
+
+        def restore_explorers_from_aws():
+            file_name = 'backup_explorers.json'
+            bucket = 'rocky-cove-80142'
+            object_name = 'backup_explorers.json'
+
+            s3_client = boto3.client('s3')
+            try:
+                response = s3_client.download_file(bucket, object_name, file_name)
+                logging.info(response)
+            except ClientError as e:
+                logging.error(e)
+                logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
+                return False
+            logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
+            return True
+
+
+
+app = FlaskApp(__name__)
+
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 #logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
-
-
-
-def restore_data_from_aws():
-    logging.info('@before_startup execution started')
-    restore_electrums_from_aws()
-    restore_explorers_from_aws()
-    logging.info('@before_startup execution finished')
-
-
-def restore_electrums_from_aws():
-    file_name = 'backup_electrums.json'
-    bucket = 'rocky-cove-80142'
-    object_name = 'backup_electrums.json'
-
-    s3_client = boto3.client('s3')
-    try:
-        response = s3_client.download_file(bucket, object_name, file_name)
-        logging.info(response)
-    except ClientError as e:
-        logging.error(e)
-        logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
-        return False
-    logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
-    return True
-
-
-def restore_explorers_from_aws():
-    file_name = 'backup_explorers.json'
-    bucket = 'rocky-cove-80142'
-    object_name = 'backup_explorers.json'
-
-    s3_client = boto3.client('s3')
-    try:
-        response = s3_client.download_file(bucket, object_name, file_name)
-        logging.info(response)
-    except ClientError as e:
-        logging.error(e)
-        logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
-        return False
-    logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
-    return True
 
 
 ## TODO: create additional json files for adex-mob and adex-pro
@@ -195,10 +200,9 @@ def gather_and_backup_electrums():
     # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder # # with a lot of escaping slashes and new lines.
     except JSONDecodeError as e:
         logging.error(e)
-        logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
-        restore_electrums_from_aws()
-        with open('backup_electrums.json') as electrum_urls:
-            electrumz = json.load(electrum_urls)
+    #    restore_electrums_from_aws()
+    #    with open('backup_electrums.json') as electrum_urls:
+    #        electrumz = json.load(electrum_urls)
         #with open('backup_electrums.json') as electrum_urls:
         #    electrumz = electrum_urls.read()
         #last_characters = electrumz[-3:]
@@ -225,10 +229,10 @@ def gather_and_backup_explorers():
             explorerz = json.load(explorers_urls)
     except JSONDecodeError as e:
         logging.error(e)
-        logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
-        restore_explorers_from_aws()
-        with open('backup_explorers.json') as explorers_urls:
-            explorerz = json.load(explorers_urls)
+    #    logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
+    #    restore_explorers_from_aws()
+    #    with open('backup_explorers.json') as explorers_urls:
+    #        explorerz = json.load(explorers_urls)
 
     updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
@@ -286,5 +290,4 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 if __name__ == "__main__":
-    restore_data_from_aws()
     app.run(host="0.0.0.0", port=os.environ['PORT'])
