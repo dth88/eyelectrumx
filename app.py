@@ -177,7 +177,7 @@ def gather_and_backup_electrums():
     logging.info('STARTED background job: ELECTRUMS UPDATE')
     try:
         with open('backup_electrums.json') as electrum_urls:
-            electrumz = json.load(electrum_urls)
+            electrumz = json.load(electrum_urls, parse_int=str)
     # There's an AUTOMAGICAL bug here which happens randomly that I cant get my head around. 
     # It is concatenating one additional curly brace at the end of 'backup_electrums.json'
     # and making it unable to load as json file(raise JSONDecodeError("Extra data", s, end)
@@ -202,7 +202,7 @@ def gather_and_backup_electrums():
         if last_characters == "]}}":
             logging.debug("removing last curly brace and trying again")
             electrumz = electrumz[:-1]
-            electrumz = json.loads(electrumz)[0]
+            electrumz = json.loads(electrumz, parse_int=str)
             logging.debug(type(electrumz))
             logging.debug(electrumz)
 
