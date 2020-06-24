@@ -187,24 +187,18 @@ def gather_and_backup_electrums():
     # Invalid control character at: line 2267 column 57 (char 65576)
     # where somehow this --> ("email": "0x03-ctrlc(at)protonmail.com",) turned into this entry ---> 
     # ("email": "0x03-ctrlc(at)protonmail.com,,)
-    # what the heck is going on... seems like i need a real db for all that...
-    # 
-    # seems like it was happening because of json.dump indent=4 argument which was confusing json encoder # # with a lot of escaping slashes and new lines.
+    # seems like i need a real db for all that...
     except JSONDecodeError as e:
         logging.error(e)
     #    restore_electrums_from_aws()
-    #    with open('backup_electrums.json') as electrum_urls:
-    #        electrumz = json.load(electrum_urls)
-        #with open('backup_electrums.json') as electrum_urls:
-        #    electrumz = electrum_urls.read()
-        #last_characters = electrumz[-3:]
-        #logging.debug(last_characters)
-        #if last_characters == "]}}":
-        #    logging.debug("removing last curly brace and trying again")
-        #    electrumz = electrumz[:-1]
-        #    electrumz = json.loads(electrumz, parse_int=str)
-        #    logging.debug(type(electrumz))
-        #    logging.debug(electrumz)
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = electrum_urls.read()
+        last_characters = electrumz[-3:]
+        logging.debug(last_characters)
+        if last_characters == "]}}":
+            logging.debug("removing last curly brace and trying again")
+            electrumz = electrumz[:-1]
+            electrumz = json.loads(electrumz)
 
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
