@@ -5,6 +5,7 @@ import boto3
 import atexit
 import logging
 import requests
+import threading
 
 from lib import electrums
 from lib import electrum_lib
@@ -23,46 +24,48 @@ class FlaskApp(Flask):
         self._activate_on_startup()
 
     def _activate_on_startup(self):
-        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-        logging.info('_activate_on_startup execution started')
-        restore_electrums_from_aws()
-        restore_explorers_from_aws()
-        logging.info('_activate_on_startup execution finished')
+        def run_job():
+            logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+            logging.info('_activate_on_startup execution started')
+            restore_electrums_from_aws()
+            restore_explorers_from_aws()
+            logging.info('_activate_on_startup execution finished')
 
-        def restore_electrums_from_aws():
-            file_name = 'backup_electrums.json'
-            bucket = 'rocky-cove-80142'
-            object_name = 'backup_electrums.json'
+            def restore_electrums_from_aws():
+                file_name = 'backup_electrums.json'
+                bucket = 'rocky-cove-80142'
+                object_name = 'backup_electrums.json'
 
-            s3_client = boto3.client('s3')
-            try:
-                response = s3_client.download_file(bucket, object_name, file_name)
-                logging.info(response)
-            except ClientError as e:
-                logging.error(e)
-                logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
-                return False
-            logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
-            return True
-        
+                s3_client = boto3.client('s3')
+                try:
+                    response = s3_client.download_file(bucket, object_name, file_name)
+                    logging.info(response)
+                except ClientError as e:
+                    logging.error(e)
+                    logging.error('AWS-S3 electrums DOWNLOAD: FAILURE')
+                    return False
+                logging.info('AWS-S3 electrums DOWNLOAD: SUCCESS')
+                return True
+            
 
-        def restore_explorers_from_aws():
-            file_name = 'backup_explorers.json'
-            bucket = 'rocky-cove-80142'
-            object_name = 'backup_explorers.json'
+            def restore_explorers_from_aws():
+                file_name = 'backup_explorers.json'
+                bucket = 'rocky-cove-80142'
+                object_name = 'backup_explorers.json'
 
-            s3_client = boto3.client('s3')
-            try:
-                response = s3_client.download_file(bucket, object_name, file_name)
-                logging.info(response)
-            except ClientError as e:
-                logging.error(e)
-                logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
-                return False
-            logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
-            return True
+                s3_client = boto3.client('s3')
+                try:
+                    response = s3_client.download_file(bucket, object_name, file_name)
+                    logging.info(response)
+                except ClientError as e:
+                    logging.error(e)
+                    logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
+                    return False
+                logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
+                return True
 
-
+        t1 = threading.Thread(target=run_job)
+        t1.start()
 
 app = FlaskApp(__name__)
 
