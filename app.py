@@ -175,6 +175,9 @@ def gather_and_backup_electrums():
     try:
         with open('backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
+        #make local backup if json is loadable
+        with open('local_backup_electrums.json', 'w') as f:
+            json.dump(electrumz, f)
     # There's an AUTOMAGICAL bug here which happens randomly that I cant get my head around. 
     # It is concatenating one additional curly brace at the end of 'backup_electrums.json'
     # and making it unable to load as json file(raise JSONDecodeError("Extra data", s, end)
@@ -190,15 +193,9 @@ def gather_and_backup_electrums():
     # seems like i need a real db for all that...
     except JSONDecodeError as e:
         logging.error(e)
-    #    restore_electrums_from_aws()
-        with open('backup_electrums.json') as electrum_urls:
-            electrumz = electrum_urls.read()
-        last_characters = electrumz[-3:]
-        logging.debug(last_characters)
-        if last_characters == "]}}":
-            logging.debug("removing last curly brace and trying again")
-            electrumz = electrumz[:-1]
-            electrumz = json.loads(electrumz)
+        #if there's decode error restore from local backup
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
 
     updated_urls = electrum_lib.call_electrums_and_update_status(electrumz, electrums.electrum_version_call, electrums.eth_call)
 
@@ -213,12 +210,14 @@ def gather_and_backup_explorers():
     try:
         with open('backup_explorers.json') as explorers_urls:
             explorerz = json.load(explorers_urls)
+        #make local backup if json is loadable
+        with open('local_backup_explorers.json', 'w') as f:
+            json.dump(explorerz, f)
     except JSONDecodeError as e:
         logging.error(e)
-    #    logging.debug("no idea what to do with that decode error, just gonna rollback to aws backup.")
-    #    restore_explorers_from_aws()
-    #    with open('backup_explorers.json') as explorers_urls:
-    #        explorerz = json.load(explorers_urls)
+        #if there's decode error restore from local backup
+        with open('local_backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
 
     updated_urls = electrum_lib.call_explorers_and_update_status(explorerz)
 
@@ -233,7 +232,7 @@ def gather_and_backup_explorers():
 
 def backup_electrums_data_to_aws():
     logging.info('STARTED background job: UPLOAD ELECTRUMS data to AWS')
-    file_name = 'backup_electrums.json'
+    file_name = 'local_backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
@@ -250,7 +249,7 @@ def backup_electrums_data_to_aws():
 
 def backup_explorers_data_to_aws():
     logging.info('STARTED background job: UPLOAD EXPLORERS data to AWS')
-    file_name = 'backup_explorers.json'
+    file_name = 'local_backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
@@ -268,7 +267,7 @@ def backup_explorers_data_to_aws():
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=100)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=30)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=30)
 scheduler.start()
