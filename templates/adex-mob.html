@@ -1,31 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-        <table style="table-layout: fixed; white-space: nowrap;">
-            <caption>AtomicDex-Mobile</caption>
-            <thead>
-                <tr>
-                    <th style="text-align: center;">Coin</th>
-                    <th style="text-align: center;">URL</th>
-                    <th>Status</th>
-                    <th style="text-align: center;">Since</th>
-                    <th>ElectrumX version</th>
-                    <th colspan="2" style="text-align: center; font-size: medium;">Contacts (email,discord,github)</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for coin, urls in urlz.items() %}
-                {% if coin in adexmob %}
-                    {% for url in urls %}
-                        <tr>
-                            <td class="aligncenter">{{coin}}</td>
-                            <td class="aligncenter"  style="width: 350px;">{{url['url']}}</td>
-                            {% if url['current_status']['alive'] == "true" %}
-                                <td style="background:green; text-align:center;">Alive!</td>
-                                <td>{{ url['current_status']['uptime'] }}</td>
-                            {% else %}
-                                <td style="background:red; text-align:center;">Dead!</td>
-                                <td>{{ url['current_status']['downtime'] }}</td>
-                            {% endif %}
+    <table style="table-layout: fixed; white-space: nowrap;">
+        <caption>AtomicDex-Mobile</caption>
+        <thead>
+            <tr>
+                <th style="text-align: center;">Coin</th>
+                <th style="text-align: center;">URL</th>
+                <th>SSL</th>
+                <th>Status</th>
+                <th style="text-align: center;">Since</th>
+                <th>ElectrumX version</th>
+                <th colspan="2" style="text-align: center; font-size: medium;">Contacts (email,discord,github)</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coin, urls in urlz.items() %}
+            {% if coin in adexmob %}
+                {% for url in urls %}
+                    <tr>
+                        <td class="aligncenter">{{coin}}</td>
+                        <td class="aligncenter"  style="width: 350px;">{{url['url']}}</td>
+                        {% if url['protocol'] and url['protocol'] == 'SSL' %}
+                            <td class="aligncenter">YES</td>
+                        {% else %}
+                            <td class="aligncenter"></td>
+                        {% endif %}
+                        {% if url['current_status']['alive'] == "true" %}
+                            <td style="background:green; text-align:center;">Alive!</td>
+                            <td>{{ url['current_status']['uptime'] }}</td>
+                        {% else %}
+                            <td style="background:red; text-align:center;">Dead!</td>
+                            <td>{{ url['current_status']['downtime'] }}</td>
+                        {% endif %}
 
                             <td class="aligncenter" style="width: 100px;">{{ url['current_status']['version'] }}</td>
 

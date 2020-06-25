@@ -75,11 +75,6 @@ def gather_tcp_electrumx_links_into_dict(electrum_links):
             for url in r:
                 new_contacts = {}
                 try:
-                    if 'SSL' in url['protocol']:
-                        continue
-                except KeyError:
-                    pass
-                try:
                     for contact in url['contact']:
                         email = contact.get('email')
                         discord = contact.get('discord')
@@ -135,26 +130,32 @@ def call_explorers_and_update_status(explorers_urls):
                     url['current_status']['downtime'] = datetime.now().strftime("%b-%d %H:%M")
     return explorers_urls
 
-
-
-# TODO: figure out ssl...
+# this implementation is quite simple and doesn't check cert validity
+# in future it might be better to use something like this https://github.com/pbca26/electrum-komodo/blob/master/lib/interface.py#L123
 def tcp_call_electrumx_ssl(url, port, content):
-    context = ssl.create_default_context()
-    response = ''
-    with socket.create_connection((url, port)) as sock:
-        with context.wrap_socket(sock, server_hostname=url) as ssock:
-            ssock.sendall(json.dumps(content).encode('utf-8')+b'\n')
-            while True:
-                data = ssock.recv(1024)
-                if (not data):
-                    break
-                response += data.decode()
-    return response
+  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  s.settimeout(2)
+  # PROTOCOL_TLS includes all ssl versions even old
+  wrappedSocket = ssl.wrap_socket(s, ssl_version=ssl.PROTOCOL_TLS, ciphers='ADH-AES256-SHA')
+  wrappedSocket.connect((url, port))
+  wrappedSocket.sendall(json.dumps(content).encode('utf-8')+b'\n')
+  response = b''
+  wrappedSocket.settimeout(2)
+  data = wrappedSocket.recv(1024)
+  while data:
+      response += data
+      try:
+          data = wrappedSocket.recv(1024)
+          response += data.decode()
+      except socket.error:
+          break
+  wrappedSocket.close()
+  return response.decode()
 
 
 def tcp_call_electrumx(url, port, content):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(0.5)
+    s.settimeout(2)
     s.connect((url, port))
     s.sendall(json.dumps(content).encode('utf-8')+b'\n')
     sleep(0.1)
@@ -178,7 +179,10 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                 electrum, port = url['url'].split(':')
                 #if electrum is reachable
                 try:
-                    r = tcp_call_electrumx(electrum, int(port), electrum_call)
+                    if 'protocol' in url and url['protocol'] == 'SSL':
+                      r = tcp_call_electrumx_ssl(electrum, int(port), electrum_call)
+                    else:
+                      r = tcp_call_electrumx(electrum, int(port), electrum_call)
                     try:
                         #update if status exists
                         if url['current_status']:
