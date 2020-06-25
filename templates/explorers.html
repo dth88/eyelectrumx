@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <table>
+        <caption>Explorers</caption>
         <thead>
             <tr>
                 <th>Coin</th>
@@ -10,12 +11,12 @@
             </tr>
         </thead>
         <tbody>
-        {% for coin, urls in explorers_urls.items() %}
+        {% for coin, urls in urlz.items() %}
             {% for url in urls %}
             <tr>
-                <td>{{coin}}</td>
-                <td>{{url['url']}}</td>
-                {% if url['current_status']['alive'] %}
+                <td style="text-align: center;">{{coin}}</td>
+                <td style="text-align: center;">{{url['url']}}</td>
+                {% if url['current_status']['alive'] == "true" %}
                     <td style="background:green">Alive!</td>
                     <td>{{ url['current_status']['uptime'] }}</td>
                 {% else %}

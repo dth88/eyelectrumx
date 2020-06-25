@@ -1,57 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-    <div style="margin-left: 350px;">
-        <div style="float:left; margin-right: 120px;">
-            <h2>/api/electrums</h2>
-            <p style="margin-left: 100px;">Get all available electrums status.</p>
-
-            <h2>/api/atomicdex-mob</h2>
-            <p style="margin-left: 100px;">Get only atomicdex-mobile electrums.</p> 
-            <p style="margin-left: 100px;">Here's json schema for your reference:</p>
-
-            <pre>
-                {
-                    "AXE": [
-                        {
-                            "url": "electrum1.cipig.net:10057",
-                            "contact": {
-                                "email": "cipi(at)komodoplatform.com",
-                                "discord": "cipi#4502"
-                            },
-                            "atomic_dex_mobile": true,
-                            "current_status": {
-                                "alive": true,
-                                "version": "1.14.0",
-                                "uptime": "Apr-23 03:40",
-                                "downtime": 0
-                            }
-                        }
-                    ],
-                    "KMD": [{},{},...],
-                    ...
-                    ...
-                }
-            </pre>
-        </div>
-
-        <div style="margin-right: 250px;">
-            <h2 style="padding-top: 23px;">/api/explorers</h2>
-            <p>Get explorers statistics. Here's json schema for your reference:</p>
-
-            <pre>
-                {
-                    "KMD": [
-                        {
-                            "url": "https://kmdexplorer.io/",
-                            "current_status": {
-                                "alive": true,
-                                "uptime": "Apr-23 03:41",
-                                "downtime": 0
-                            }
-                        }
-                    ]
-                }
-            </pre>
-        </div>
-    </div>
+<div style="margin-left: 34%;">
+    <table style="margin-top: 60px;">
+        <caption>API ENDPOINTS</caption>
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="/api/electrums">/api/electrums</a></td>
+                <td> - Get all available electrums data.</td>
+            </tr>
+            <tr>
+                <td><a href="/api/adex-mob">/api/adex-mob</a></td>
+                <td> - Get AtomicDex-Mobile electrums data.</td>
+            </tr>
+            <tr>
+                <td><a href="/api/adex-pro">/api/adex-pro</a></td>
+                <td> - Get AtomicDex-Pro (Desktop) electrums data.</td>
+            </tr>
+            <tr>
+                <td><a href="/api/explorers">/api/explorers</a></td>
+                <td> - Get explorers data.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <table style="table-layout: fixed; white-space: nowrap;">
-        <caption>All Electrums</caption>
+        <caption>AtomicDex-Mobile</caption>
         <thead>
             <tr>
                 <th style="text-align: center;">Coin</th>
@@ -15,7 +15,8 @@
         </thead>
         <tbody>
         {% for coin, urls in urlz.items() %}
-            {% for url in urls %}
+            {% if coin in adexmob %}
+                {% for url in urls %}
                     <tr>
                         <td class="aligncenter">{{coin}}</td>
                         <td class="aligncenter"  style="width: 350px;">{{url['url']}}</td>
@@ -53,10 +54,11 @@
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <td colspan="2" style="text-align: center; width:100px">----------------------------------(None)----------------------------------</td>
+                            <td colspan="2" style="text-align: center; width:100px">-----------------------------------(None)-----------------------------------</td>
                         {% endif %}
                     </tr>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
