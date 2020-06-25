@@ -1,3 +1,3 @@
-# Komodo electrum monitoring portal
+# Komodo electrumX server monitoring portal
 
-https://rocky-cove-80142.herokuapp.com/
+https://eyelectrumx.herokuapp.com/
