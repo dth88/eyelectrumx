@@ -43,18 +43,18 @@
                                                 {{v}}
                                             </div>
                                         {% elif 'discord' in k %} 
-                                            <div style="width: 50px; overflow: auto;">
+                                            <div style="width: 80px; overflow: auto;">
                                                 {{v}}
                                             </div>
                                         {% elif 'github' in k %}
-                                            <div style="width: 50px; overflow: auto;">
+                                            <div style="width: 60px; overflow: auto;">
                                                 <a href={{v}}>Github</a>
                                             </div>
                                     </td>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
-                                <td colspan="2" style="text-align: center; width:100px;">---------------(None)--------------</td>
+                                <td colspan="2" style="text-align: center; width:100px;">--------------------(None)-------------------</td>
                             {% endif %}
                         </tr>
                 {% endfor %}
