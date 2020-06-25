@@ -279,8 +279,8 @@ def backup_explorers_data_to_aws():
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=60)
-scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=60)
+scheduler.add_job(func=gather_and_backup_electrums, trigger="interval", seconds=180)
+scheduler.add_job(func=gather_and_backup_explorers, trigger="interval", seconds=120)
 scheduler.add_job(func=backup_electrums_data_to_aws, trigger="interval", minutes=30)
 scheduler.add_job(func=backup_explorers_data_to_aws, trigger="interval", minutes=30)
 scheduler.start()

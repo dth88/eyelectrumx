@@ -144,7 +144,7 @@ def tcp_call_electrumx_ssl(url, port, content):
   wrappedSocket.connect((url, port))
   wrappedSocket.sendall(json.dumps(content).encode('utf-8')+b'\n')
   response = b''
-  wrappedSocket.settimeout(0.75)
+  wrappedSocket.settimeout(0.6)
   data = wrappedSocket.recv(1024)
   while data:
       response += data
@@ -341,7 +341,7 @@ def pretty_print(electrum_urls):
 
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     #result = tcp_call_electrumx('electrum2.cipig.net', 10054, version_call)
     #print(result, end='')
 
@@ -353,15 +353,15 @@ if __name__ == "__main__":
 
     #to rebuild electrums json - uncomment this section
     #-----------------
-    repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
-    print(json.dumps(repo_links, indent=2))
-    backup_electrums_repo_links(repo_links)
-    d, c = gather_electrumx_links_into_dict(repo_links)
-    backup_electrums_links(d)
-    print(json.dumps(d, indent=2))
-    d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
-    backup_electrums(d)
-    pretty_print(d)
+    #repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
+    #print(json.dumps(repo_links, indent=2))
+    #backup_electrums_repo_links(repo_links)
+    #d, c = gather_electrumx_links_into_dict(repo_links)
+    #backup_electrums_links(d)
+    #print(json.dumps(d, indent=2))
+    #d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
+    #backup_electrums(d)
+    #pretty_print(d)
     #-----------------
 
     #d = restore_electrums_from_backup()
