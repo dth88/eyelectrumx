@@ -26,7 +26,7 @@
                                 <td>{{ url['current_status']['downtime'] }}</td>
                             {% endif %}
 
-                            <td class="aligncenter" style="width: 100px">{{ url['current_status']['version'] }}</td>
+                            <td class="aligncenter" style="width: 100px;">{{ url['current_status']['version'] }}</td>
 
                             {% if url['contact']%}
                                 {% for k,v in url['contact'].items() %}
@@ -47,7 +47,7 @@
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
-                                <td colspan="2" style="text-align: center; width:100px">----------------------------------(None)----------------------------------</td>
+                                <td colspan="2" style="text-align: center; width:100px;">----------------------------------(None)----------------------------------</td>
                             {% endif %}
                         </tr>
                 {% endfor %}
