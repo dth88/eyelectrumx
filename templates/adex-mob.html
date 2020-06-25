@@ -27,11 +27,7 @@
                                 <td>{{ url['current_status']['downtime'] }}</td>
                             {% endif %}
 
-                            {% if url['current_status']['version'] %}
                             <td class="aligncenter">{{ url['current_status']['version'] }}</td>
-                            {% else %}
-                            <td class="aligncenter">Unknown</td>
-                            {% endif %}
 
                             {% if url['contact']%}
                                 {% for k,v in url['contact'].items() %}
