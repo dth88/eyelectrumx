@@ -232,7 +232,7 @@ def gather_and_backup_explorers():
 
 def backup_electrums_data_to_aws():
     logging.info('STARTED background job: UPLOAD ELECTRUMS data to AWS')
-    file_name = 'local_backup_electrums.json'
+    file_name = 'backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
@@ -249,7 +249,7 @@ def backup_electrums_data_to_aws():
 
 def backup_explorers_data_to_aws():
     logging.info('STARTED background job: UPLOAD EXPLORERS data to AWS')
-    file_name = 'local_backup_explorers.json'
+    file_name = 'backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
