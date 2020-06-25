@@ -144,7 +144,7 @@ def tcp_call_electrumx_ssl(url, port, content):
   wrappedSocket.connect((url, port))
   wrappedSocket.sendall(json.dumps(content).encode('utf-8')+b'\n')
   response = b''
-  wrappedSocket.settimeout(2)
+  wrappedSocket.settimeout(0.75)
   data = wrappedSocket.recv(1024)
   while data:
       response += data
@@ -201,8 +201,6 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                 is_fulcrum = False
                             if 'QTUM' in coin:
                                 url['current_status']['version'] = "{}".format(r.split()[5][:-2])
-                            elif 'SSL' in url['protocol']:
-                                url['current_status']['version'] = "{}".format(r.split()[4][:6])
                             elif is_fulcrum:
                                 url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                             else:
@@ -226,8 +224,6 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             is_fulcrum = False
                         if 'QTUM' in coin:
                             url['current_status']['version'] = "{}".format(r.split()[5][:-2])
-                        elif 'SSL' in url['protocol']:
-                            url['current_status']['version'] = "{}".format(r.split()[4][:6])
                         elif is_fulcrum:
                             url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                         else:
