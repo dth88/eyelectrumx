@@ -173,6 +173,7 @@ def tcp_call_electrumx(url, port, content):
     s.close()
     return response
 
+
 @measure
 def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
     for coin, urls in electrum_urls.items():
@@ -185,7 +186,6 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                 try:
                     if 'SSL' in url['protocol']:
                       r = tcp_call_electrumx_ssl(electrum, int(port), electrum_call)
-                      print(r)
                     else:
                       r = tcp_call_electrumx(electrum, int(port), electrum_call)
                     try:
@@ -201,6 +201,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                                 is_fulcrum = False
                             if 'QTUM' in coin:
                                 url['current_status']['version'] = "{}".format(r.split()[5][:-2])
+                            elif 'SSL' in url['protocol']:
+                                url['current_status']['version'] = "{}".format(r.split()[4][:6])
                             elif is_fulcrum:
                                 url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                             else:
@@ -224,6 +226,8 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                             is_fulcrum = False
                         if 'QTUM' in coin:
                             url['current_status']['version'] = "{}".format(r.split()[5][:-2])
+                        elif 'SSL' in url['protocol']:
+                            url['current_status']['version'] = "{}".format(r.split()[4][:6])
                         elif is_fulcrum:
                             url['current_status']['version'] = "{}({})".format(r.split()[0][-7:], r.split()[1][:5])
                         else:
