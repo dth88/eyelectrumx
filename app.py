@@ -143,15 +143,28 @@ def get_all_explorers():
         return jsonify(explorerz)
 
 
+#DEBUG
+
+@app.route('/debug/electrums')
+def get_debug_electrums():
+    with open('backup_electrums.json') as explorers_urls:
+        explorerz = explorers_urls.read()
+        return render_template('debug.html', urlz=explorerz)
+
+
+@app.route('/debug/local_electrums')
+def get_debug_local_electrums():
+    with open('local_backup_electrums.json') as explorers_urls:
+        explorerz = explorers_urls.read()
+        return render_template('debug.html', urlz=explorerz)
+
+
 
 ### Error handling
 #@app.errorhandler(500)
 #def rollback_electrums():
 #    logging.error("500 again! Rolling back from AWS")
 #    restore_electrums_from_aws()
-
-
-
 
 
 

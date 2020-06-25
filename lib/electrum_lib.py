@@ -58,14 +58,14 @@ def combine_electrums_repo_links(all_tickers, link, eth_link):
 
 
 @measure
-def gather_tcp_electrumx_links_into_dict(electrum_links):
+def gather_electrumx_links_into_dict(electrum_links):
     output = {}
     counter = 0
     for coin, link in electrum_links.items():
         try:
             r = requests.get(link).json()
-        except Exception as e:
-            print(e)
+        except RequestException as e:
+            logging.error(e)
         urls = []
         if 'rpc_nodes' in r:
             for url in r['rpc_nodes']:
@@ -74,6 +74,11 @@ def gather_tcp_electrumx_links_into_dict(electrum_links):
         else:
             for url in r:
                 new_contacts = {}
+                try:
+                    if url['protocol']:
+                        pass
+                except KeyError:
+                    url['protocol'] = "TCP"
                 try:
                     for contact in url['contact']:
                         email = contact.get('email')
@@ -113,7 +118,6 @@ def call_explorers_and_update_status(explorers_urls):
                     url['current_status']['alive'] = "true"
                     url['current_status']['downtime'] = "0"
                     url['current_status']['uptime'] = datetime.now().strftime("%b-%d %H:%M")
-                    
             #if explorer is unreachable
             except RequestException:
                 try:
@@ -155,7 +159,7 @@ def tcp_call_electrumx_ssl(url, port, content):
 
 def tcp_call_electrumx(url, port, content):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(2)
+    s.settimeout(0.5)
     s.connect((url, port))
     s.sendall(json.dumps(content).encode('utf-8')+b'\n')
     sleep(0.1)
@@ -179,8 +183,9 @@ def call_electrums_and_update_status(electrum_urls, electrum_call, eth_call):
                 electrum, port = url['url'].split(':')
                 #if electrum is reachable
                 try:
-                    if 'protocol' in url and url['protocol'] == 'SSL':
+                    if 'SSL' in url['protocol']:
                       r = tcp_call_electrumx_ssl(electrum, int(port), electrum_call)
+                      print(r)
                     else:
                       r = tcp_call_electrumx(electrum, int(port), electrum_call)
                     try:
@@ -351,7 +356,7 @@ if __name__ == "__main__":
     repo_links = combine_electrums_repo_links(all_tickers, link, eth_link)
     print(json.dumps(repo_links, indent=2))
     backup_electrums_repo_links(repo_links)
-    d, c = gather_tcp_electrumx_links_into_dict(repo_links)
+    d, c = gather_electrumx_links_into_dict(repo_links)
     backup_electrums_links(d)
     print(json.dumps(d, indent=2))
     d = call_electrums_and_update_status(d, electrum_version_call, eth_call)
