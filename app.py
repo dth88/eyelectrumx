@@ -48,8 +48,31 @@ class FlaskApp(Flask):
                 logging.error(e)
                 logging.error('AWS-S3 explorers DOWNLOAD: FAILURE')
             logging.info('AWS-S3 explorers DOWNLOAD: SUCCESS')
-            logging.info('_activate_on_startup execution finished')
 
+            logging.info('creating local backups of json data')
+            try:
+                with open('backup_electrums.json') as electrum_urls:
+                    electrumz = json.load(electrum_urls)
+                logging.info('backup_electrums json from aws is valid, creating local backup...')
+                with open('local_backup_electrums.json', 'w') as f:
+                    json.dump(electrumz, f)
+                logging.info('local_backup_electrums - CREATED')
+            except JSONDecodeError as e:
+                logging.error(e)
+                logging.error("ELECTRUMS JSON DATA FROM AWS IS INVALID!!!")
+            
+            try:
+                with open('backup_explorers.json') as explorers_urls:
+                    explorerz = json.load(explorers_urls)
+                logging.info('backup_explorers json from aws is valid, creating local backup...')
+                with open('local_backup_explorers.json', 'w') as f:
+                    json.dump(explorerz, f)
+                logging.info('local_backup_explorers - CREATED')
+            except JSONDecodeError as e:
+                logging.error(e)
+                logging.error("EXPLORERS JSON DATA FROM AWS IS INVALID!!!")
+            logging.info('_activate_on_startup execution finished')
+        
 
         t1 = threading.Thread(target=restore_data_from_aws)
         t1.start()
@@ -69,30 +92,58 @@ app = FlaskApp(__name__)
 ### TEMPLATES
 @app.route("/")
 def main():
-    with open('backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
-    return render_template('index.html', urlz=electrumz)
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('index.html', urlz=electrumz)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('index.html', urlz=electrumz)
 
 
 @app.route("/adex-mob")
 def filter_mob():
-    with open('backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
-    return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('index.html', urlz=electrumz, adexmob=electrums.adex_mob)
 
 
 @app.route("/adex-pro")
 def filter_pro():
-    with open('backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
-    return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return render_template('index.html', urlz=electrumz, adexpro=electrums.adex_pro)
 
 
 @app.route("/explorers")
 def explorers():
-    with open('backup_explorers.json') as explorers_urls:
-        explorerz = json.load(explorers_urls)
-    return render_template('explorers.html', urlz=explorerz)
+    try:
+        with open('backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
+        return render_template('explorers.html', urlz=explorerz)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error in EXPLORERS - RESTORING FROM LOCAL backup")
+        with open('local_backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
+        return render_template('explorers.html', urlz=explorerz)
 
 
 @app.route("/api")
@@ -105,44 +156,72 @@ def api():
 
 @app.route('/api/electrums')
 def get_all_electrums():
-    with open('backup_electrums.json') as electrum_urls:
-        #electrum_urls = electrum_urls.read()
-        #electrum_urls = electrum_urls[:-1]
-        electrumz = json.load(electrum_urls)
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+        return jsonify(electrumz)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
         return jsonify(electrumz)
 
 
 @app.route('/api/adex-mob')
 def get_adex_mob_electrums():
-    with open('backup_electrums.json') as electrum_urls:
-        #electrum_urls = electrum_urls.read()
-        #electrum_urls = electrum_urls[:-1]
-        electrumz = json.load(electrum_urls)
-        d = {}
-        for coin, urls in electrumz.items():
-            if coin in electrums.adex_mob:
-                d[coin] = urls
-        return jsonify(d)
+    d = {}
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+            for coin, urls in electrumz.items():
+                if coin in electrums.adex_mob:
+                    d[coin] = urls
+            return jsonify(d)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+            for coin, urls in electrumz.items():
+                if coin in electrums.adex_mob:
+                    d[coin] = urls
+    return jsonify(d)
 
 
 @app.route('/api/adex-pro')
 def get_adex_pro_electrums():
-    with open('backup_electrums.json') as electrum_urls:
-        electrumz = json.load(electrum_urls)
-        d = {}
-        for coin, urls in electrumz.items():
-            if coin in electrums.adex_pro:
-                d[coin] = urls
-        return jsonify(d)
-
+    try:
+        with open('backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+            d = {}
+            for coin, urls in electrumz.items():
+                if coin in electrums.adex_pro:
+                    d[coin] = urls
+            return jsonify(d)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error RESTORING FROM LOCAL backup")
+        with open('local_backup_electrums.json') as electrum_urls:
+            electrumz = json.load(electrum_urls)
+            d = {}
+            for coin, urls in electrumz.items():
+                if coin in electrums.adex_pro:
+                    d[coin] = urls
+            return jsonify(d)
 
 @app.route('/api/explorers')
 def get_all_explorers():
-    with open('backup_explorers.json') as explorers_urls:
-        explorerz = json.load(explorers_urls)
+    try:
+        with open('backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
+            return jsonify(explorerz)
+    except JSONDecodeError as e:
+        logging.error(e)
+        logging.error("there's decode error in EXPLORERS - RESTORING FROM LOCAL backup")
+        with open('local_backup_explorers.json') as explorers_urls:
+            explorerz = json.load(explorers_urls)
         return jsonify(explorerz)
-
-
 #DEBUG
 
 @app.route('/debug/electrums')
@@ -245,7 +324,7 @@ def gather_and_backup_explorers():
 
 def backup_electrums_data_to_aws():
     logging.info('STARTED background job: UPLOAD ELECTRUMS data to AWS')
-    file_name = 'backup_electrums.json'
+    file_name = 'local_backup_electrums.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_electrums.json'
 
@@ -262,7 +341,7 @@ def backup_electrums_data_to_aws():
 
 def backup_explorers_data_to_aws():
     logging.info('STARTED background job: UPLOAD EXPLORERS data to AWS')
-    file_name = 'backup_explorers.json'
+    file_name = 'local_backup_explorers.json'
     bucket = 'rocky-cove-80142'
     object_name = 'backup_explorers.json'
 
