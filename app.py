@@ -13,6 +13,7 @@ from lib import electrum_lib
 from functools import wraps
 from time import time, sleep
 from json import JSONDecodeError
+from datetime import datetime, timedelta
 from botocore.exceptions import ClientError
 from flask import Flask, render_template, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -80,7 +81,10 @@ class FlaskApp(Flask):
 
 app = FlaskApp(__name__)
 
-
+global time_since_last_ping
+last_ping_electrumz = '180'
+global time_since_last_ping_explorers
+last_ping_explorers = '120'
 #logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
@@ -92,58 +96,66 @@ app = FlaskApp(__name__)
 ### TEMPLATES
 @app.route("/")
 def main():
+    secs_since_last_ping = datetime.now() - last_ping_electrumz
+    secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
         with open('backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('index.html', urlz=electrumz)
+        return render_template('index.html', urlz=electrumz, last_ping=secs_since_last_ping)
     except JSONDecodeError as e:
         logging.error(e)
         logging.error("there's decode error RESTORING FROM LOCAL backup")
         with open('local_backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('index.html', urlz=electrumz)
+        return render_template('index.html', urlz=electrumz, last_ping=secs_since_last_ping)
 
 
 @app.route("/adex-mob")
 def filter_mob():
+    secs_since_last_ping = datetime.now() - last_ping_electrumz
+    secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
         with open('backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob)
+        return render_template('adex-mob.html', urlz=electrumz, adexmob=electrums.adex_mob, last_ping=secs_since_last_ping)
     except JSONDecodeError as e:
         logging.error(e)
         logging.error("there's decode error RESTORING FROM LOCAL backup")
         with open('local_backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('index.html', urlz=electrumz, adexmob=electrums.adex_mob)
+        return render_template('index.html', urlz=electrumz, adexmob=electrums.adex_mob, last_ping=secs_since_last_ping)
 
 
 @app.route("/adex-pro")
 def filter_pro():
+    secs_since_last_ping = datetime.now() - last_ping_electrumz
+    secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
         with open('backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro)
+        return render_template('adex-pro.html', urlz=electrumz, adexpro=electrums.adex_pro, last_ping=secs_since_last_ping)
     except JSONDecodeError as e:
         logging.error(e)
         logging.error("there's decode error RESTORING FROM LOCAL backup")
         with open('local_backup_electrums.json') as electrum_urls:
             electrumz = json.load(electrum_urls)
-        return render_template('index.html', urlz=electrumz, adexpro=electrums.adex_pro)
+        return render_template('index.html', urlz=electrumz, adexpro=electrums.adex_pro, last_ping=secs_since_last_ping)
 
 
 @app.route("/explorers")
 def explorers():
+    secs_since_last_ping = datetime.now() - last_ping_explorers
+    secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
         with open('backup_explorers.json') as explorers_urls:
             explorerz = json.load(explorers_urls)
-        return render_template('explorers.html', urlz=explorerz)
+        return render_template('explorers.html', urlz=explorerz, last_ping=secs_since_last_ping)
     except JSONDecodeError as e:
         logging.error(e)
         logging.error("there's decode error in EXPLORERS - RESTORING FROM LOCAL backup")
         with open('local_backup_explorers.json') as explorers_urls:
             explorerz = json.load(explorers_urls)
-        return render_template('explorers.html', urlz=explorerz)
+        return render_template('explorers.html', urlz=explorerz, last_ping=secs_since_last_ping)
 
 
 @app.route("/api")
@@ -210,6 +222,7 @@ def get_adex_pro_electrums():
                     d[coin] = urls
             return jsonify(d)
 
+
 @app.route('/api/explorers')
 def get_all_explorers():
     try:
@@ -222,6 +235,9 @@ def get_all_explorers():
         with open('local_backup_explorers.json') as explorers_urls:
             explorerz = json.load(explorers_urls)
         return jsonify(explorerz)
+
+
+
 #DEBUG
 
 @app.route('/debug/electrums')
@@ -263,6 +279,9 @@ def measure(func):
 
 @measure
 def gather_and_backup_electrums():
+    global last_ping_electrumz
+    last_ping_electrumz = datetime.now()
+
     logging.info('STARTED background job: ELECTRUMS UPDATE')
     try:
         with open('backup_electrums.json') as electrum_urls:
@@ -298,6 +317,9 @@ def gather_and_backup_electrums():
 
 @measure
 def gather_and_backup_explorers():
+    global last_ping_explorers
+    last_ping_explorers = datetime.now()
+
     logging.info('STARTED background job: EXPLORERS UPDATE')
     try:
         with open('backup_explorers.json') as explorers_urls:
@@ -316,7 +338,6 @@ def gather_and_backup_explorers():
     with open('backup_explorers.json', 'w') as f:
         json.dump(updated_urls, f)
         logging.info('background job: EXPLORERS UPDATE FINISHED')
-
 
 
 
