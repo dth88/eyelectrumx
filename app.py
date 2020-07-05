@@ -72,21 +72,22 @@ class FlaskApp(Flask):
             except JSONDecodeError as e:
                 logging.error(e)
                 logging.error("EXPLORERS JSON DATA FROM AWS IS INVALID!!!")
+            
+            logging.info('time preparation....')
+            global last_ping_electrumz
+            last_ping_electrumz = datetime.now()
+            global last_ping_explorers
+            last_ping_explorers = datetime.now()
+            logging.info('time preparation done')
+            
             logging.info('_activate_on_startup execution finished')
         
-
         t1 = threading.Thread(target=restore_data_from_aws)
         t1.start()
 
 
 app = FlaskApp(__name__)
-
-@app.before_first_request
-def prepare_time():
-    global last_ping_electrumz
-    last_ping_electrumz = datetime.now()
-    global last_ping_explorers
-    last_ping_explorers = datetime.now()
+    
 #logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
@@ -98,6 +99,7 @@ def prepare_time():
 ### TEMPLATES
 @app.route("/")
 def main():
+    global last_ping_electrumz
     secs_since_last_ping = datetime.now() - last_ping_electrumz
     secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
@@ -114,6 +116,7 @@ def main():
 
 @app.route("/adex-mob")
 def filter_mob():
+    global last_ping_electrumz
     secs_since_last_ping = datetime.now() - last_ping_electrumz
     secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
@@ -130,6 +133,7 @@ def filter_mob():
 
 @app.route("/adex-pro")
 def filter_pro():
+    global last_ping_electrumz
     secs_since_last_ping = datetime.now() - last_ping_electrumz
     secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
@@ -146,6 +150,7 @@ def filter_pro():
 
 @app.route("/explorers")
 def explorers():
+    global last_ping_explorers
     secs_since_last_ping = datetime.now() - last_ping_explorers
     secs_since_last_ping = "{}".format(secs_since_last_ping.seconds)
     try:
