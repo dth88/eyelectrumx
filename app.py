@@ -81,10 +81,12 @@ class FlaskApp(Flask):
 
 app = FlaskApp(__name__)
 
-global time_since_last_ping
-last_ping_electrumz = '180'
-global time_since_last_ping_explorers
-last_ping_explorers = '120'
+@app.before_first_request
+def prepare_time():
+    global last_ping_electrumz
+    last_ping_electrumz = datetime.now()
+    global last_ping_explorers
+    last_ping_explorers = datetime.now()
 #logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 #logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
