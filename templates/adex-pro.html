@@ -17,43 +17,45 @@
         {% for coin, urls in urlz.items() %}
             {% if coin in adexpro %}
                 {% for url in urls %}
+                    {% if url['protocol'] == 'TCP' %}
                     <tr>
                         <td class="aligncenter">{{coin}}</td>
                         <td class="aligncenter" style="width: 350px;">{{url['url']}}</td>
-                        {% if url['protocol'] == 'TCP' %}
-                            <td class="aligncenter">TCP</td>
-                            {% if url['current_status']['alive'] == "true" %}
-                                <td style="background:green; text-align:center;">Alive!</td>
-                                <td>{{ url['current_status']['uptime'] }}</td>
-                            {% else %}
-                                <td style="background:red; text-align:center;">Dead!</td>
-                                <td>{{ url['current_status']['downtime'] }}</td>
-                            {% endif %}
+                        
+                        <td class="aligncenter">TCP</td>
+                        {% if url['current_status']['alive'] == "true" %}
+                            <td style="background:green; text-align:center;">Alive!</td>
+                            <td>{{ url['current_status']['uptime'] }}</td>
+                        {% else %}
+                            <td style="background:red; text-align:center;">Dead!</td>
+                            <td>{{ url['current_status']['downtime'] }}</td>
                         {% endif %}
-                            <td class="aligncenter" style="width: 100px;">{{ url['current_status']['version'] }}</td>
-                            
-                            {% if url['contact']%}
-                                {% for k,v in url['contact'].items() %}
-                                    <td colspan="1" style="text-align: left; width:170px;">
-                                        {% if 'email' in k %}
-                                            <div style="width: 230px; overflow: auto;">
-                                                {{v}}
-                                            </div>
-                                        {% elif 'discord' in k %} 
-                                            <div style="width: 110px; overflow: auto;">
-                                                {{v}}
-                                            </div>
-                                        {% elif 'github' in k %}
-                                            <div style="width: 60px; overflow: auto;">
-                                                <a href={{v}}>Github</a>
-                                            </div>
-                                    </td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td colspan="2" style="text-align: left; width:100px;">------------------------(None)-----------------------</td>
-                            {% endif %}
-                        </tr>
+                    
+                        <td class="aligncenter" style="width: 100px;">{{ url['current_status']['version'] }}</td>
+                        
+                        {% if url['contact']%}
+                            {% for k,v in url['contact'].items() %}
+                                <td colspan="1" style="text-align: left; width:170px;">
+                                    {% if 'email' in k %}
+                                        <div style="width: 230px; overflow: auto;">
+                                            {{v}}
+                                        </div>
+                                    {% elif 'discord' in k %} 
+                                        <div style="width: 110px; overflow: auto;">
+                                            {{v}}
+                                        </div>
+                                    {% elif 'github' in k %}
+                                        <div style="width: 60px; overflow: auto;">
+                                            <a href={{v}}>Github</a>
+                                        </div>
+                                </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <td colspan="2" style="text-align: left; width:100px;">------------------------(None)-----------------------</td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
                 {% endfor %}
             {% endif %}    
         {% endfor %}
