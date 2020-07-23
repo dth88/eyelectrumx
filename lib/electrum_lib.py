@@ -73,6 +73,8 @@ def gather_electrumx_links_into_dict(electrum_links):
                 counter += 1
         else:
             for url in r:
+                #debug if json error
+                #print('{} --> {}'.format(coin, url))
                 new_contacts = {}
                 try:
                     if url['protocol']:
@@ -342,6 +344,7 @@ def pretty_print(electrum_urls):
 
 
 #if __name__ == "__main__":
+    # test
     #result = tcp_call_electrumx('electrum2.cipig.net', 10054, version_call)
     #print(result, end='')
 
