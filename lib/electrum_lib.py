@@ -69,6 +69,11 @@ def gather_electrumx_links_into_dict(electrum_links):
         urls = []
         if 'rpc_nodes' in r:
             for url in r['rpc_nodes']:
+                try:
+                    if url['protocol']:
+                        pass
+                except KeyError:
+                    url['protocol'] = "TCP"
                 urls.append(url)
                 counter += 1
         else:
