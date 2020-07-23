@@ -195,7 +195,11 @@ def get_adex_mob_electrums():
             electrumz = json.load(electrum_urls)
             for coin, urls in electrumz.items():
                 if coin in electrums.adex_mob:
-                    d[coin] = urls
+                    urls_without_ssl = []
+                    for url in urls:
+                        if url['protocol'] == 'TCP':
+                            urls_without_ssl.append(url)
+                    d[coin] = urls_without_ssl
             return jsonify(d)
     except JSONDecodeError as e:
         logging.error(e)
@@ -204,7 +208,11 @@ def get_adex_mob_electrums():
             electrumz = json.load(electrum_urls)
             for coin, urls in electrumz.items():
                 if coin in electrums.adex_mob:
-                    d[coin] = urls
+                    urls_without_ssl = []
+                    for url in urls:
+                        if url['protocol'] == 'TCP':
+                            urls_without_ssl.append(url)
+                    d[coin] = urls_without_ssl
     return jsonify(d)
 
 
@@ -216,7 +224,11 @@ def get_adex_pro_electrums():
             d = {}
             for coin, urls in electrumz.items():
                 if coin in electrums.adex_pro:
-                    d[coin] = urls
+                    urls_without_ssl = []
+                    for url in urls:
+                        if url['protocol'] == 'TCP':
+                            urls_without_ssl.append(url)
+                    d[coin] = urls_without_ssl
             return jsonify(d)
     except JSONDecodeError as e:
         logging.error(e)
@@ -226,7 +238,11 @@ def get_adex_pro_electrums():
             d = {}
             for coin, urls in electrumz.items():
                 if coin in electrums.adex_pro:
-                    d[coin] = urls
+                    urls_without_ssl = []
+                    for url in urls:
+                        if url['protocol'] == 'TCP':
+                            urls_without_ssl.append(url)
+                    d[coin] = urls_without_ssl
             return jsonify(d)
 
 
