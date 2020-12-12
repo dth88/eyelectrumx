@@ -8,11 +8,11 @@
 
 all_tickers = ["AXE",      "BCH",    "BET",  "BOTS",  "BTC",    "BTCH",  "BTG",      "CCL",   "CHIPS",
                "COQUI",    "CRYPTO", "D",    "DASH",  "DEX",    "DGB",   "DOGE",     "ECA",   "EMC2",
-               "FTC",      "GIN",    "GRS",  "HODL",  "HODLC",  "HUSH",  "ILN",      "JUMBLR",
-               "KMD",      "KOIN",   "LABS", "LTC",   "LUMBER", "MCL",   "MGW",      "MONA",  "MORTY",
-               "MUE",      "MSHARK", "NAV",  "NINJA", "NMC",    "OOT",   "PANGEA",   "PGT",   "PTX",
-               "QTUM",     "REVS",   "RFOX", "RICK",  "RVN",    "SMART", "SUPERNET", "THC",   "UFO",
-               "VRSC",     "VTC",    "WLC",  "XBC",   "XZC",    "ZEC",   "ZER",      "ZILLA", "ETH"]
+               "FIRO",     "FTC",    "GIN",  "GLEEC", "GRS",    "HODL",  "ILN",      "JUMBLR",
+               "KMD",      "KOIN",   "LABS", "LTC",   "MCL",    "MGW",   "MONA",     "MORTY",
+               "MSHARK",   "NAV",    "NINJA", "NMC",    "OOT",   "PANGEA",   "PGT",   "PTX",
+               "QTUM",     "REVS",   "RICK",  "RVN",    "SMART", "SPACE", "SUPERNET", "THC",   "UFO",
+               "VRSC",     "VTC",    "WLC",   "ZEC",   "ZER",    "ZILLA", "tBTC", "tQTUM", "ETH"]
 
 
 #official electrums/parity-node repo links
@@ -21,14 +21,28 @@ eth_link = "https://raw.githubusercontent.com/KomodoPlatform/coins/master/ethere
 
 
 #filters
-adex_mob = ["KMD",   "BTC", "AXE",  "BCH",  "DASH", "DGB", "DOGE", "ECA",      "FTC", "LTC",   "NAV",  "QTUM", "RVN", "VRSC", "ZEC",  "XZC", "ZER",  
-            "ZILLA", "DEX", "HUSH", "LABS", "KOIN", "MCL", "RFOX", "SUPERNET", "OOT", "MORTY", "RICK",
-            "ETH"]
+adex_mob = ["KMD",    "BTC",    "AXE",    "BCH",   "DASH",    "DGB",       "DOGE", 
+            "ECA",    "THC",    "PBC",    "FTC",   "FIRO",    "LTC",       "NAV",
+            "QTUM",   "RVN",    "VRSC",   "ZEC",   "ZER",     "tBTC",      "GLEEC",
+            "ZILLA",  "DEX",    "LABS",   "KOIN",  "MCL",     "SUPERNET", 
+            "OOT",    "MORTY",  "RICK",   "ETH"]
                      
 
-adex_pro = ["KMD", "BTC", "NAV",  "BCH",      "QTUM", "ZEC",    "LTC",  "DASH", "XZC",    "DGB", "CHIPS", "ECA",  "DOGE", "RVN",
-            "ILN", "MCL", "REVS", "SUPERNET", "BOTS", "CRYPTO", "VRSC", "HUSH", "PANGEA", "BET", "DEX",   "LABS", "MGW",  "JUMBLR", "MORTY", "RICK",   
-            "ETH"]
+adex_pro = ["AXE",    "BET",    "BTC",      "tBTC",    "BCH",      "BTCH",   "BOTS",
+            "ZILLA",  "CHIPS",  "CCL",      "COQUI",   "CRYPTO",   "DASH",   "DEX",
+            "DGB",    "DOGE",   "EMC2",     "ECA",     "ETH",      "FTC",    "FIRO",
+            "GLEEC",  "THC",    "HODL",     "ILN",     "JUMBLR",   "KOIN",   "KMD",
+            "LABS",   "LTC",    "MCL",      "MGW",     "MSHARK",   "MONA",   "MORTY",
+            "NMC",    "NAV",    "PANGEA",   "PBC",     "QTUM",     "RVN",    "REVS",
+            "RICK",   "SPACE",  "SUPERNET", "OOT",     "VRSC",     "WLC",    "ZEC",
+            "ZER"]
+                              
+                               
+                          
+                        
+                                    
+                            
+                        
 
                              
 #electrum call
